@@ -37,5 +37,9 @@ namespace Assign2 {
             get { return this.server; }
         }
 
+        public GuildType Type {
+            get { return this.type; }
+        }
+
     }
 }

@@ -11,12 +11,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Assign2 {
-    // The types of items a character can have.
-    public enum ItemType {
-        Helmet, Neck, Shoulders, Back, Chest, Wrists,
-        Gloves, Belt, Pants, Boots, Ring, Trinket
-    };
-
     // The available races for the character.
     public enum Race {
         Orc, Troll, Tauren, Forsaken
@@ -32,6 +26,11 @@ namespace Assign2 {
         Casual, Questing, Mythic, Raiding, PVP
     }
 
+    // Servers
+    public enum Servers {
+        Beta4Azeroth, TKWasASetback, ZappyBoi
+    }
+
     public partial class Form1 : Form {
         uint playerId = 0;
         uint guildId = 0;
@@ -41,29 +40,32 @@ namespace Assign2 {
         private static Dictionary<uint, Player> playerList = new Dictionary<uint, Player>();    // Player dictionary.
         private static Dictionary<uint, Guild> guildList = new Dictionary<uint, Guild>();       // Player dictionary.
 
-
         public Form1() {
             InitializeComponent();
 
             // Build Guild dictionary
             using (var reader = new StreamReader(@"..\..\..\Resources\guilds.txt")) {
-                string line;
+                string line;        // Single entry in guilds.txt file.
 
+                // While there are still lines to be read from guilds file, tokenize each line and add each guild to guildList dictionary.
                 while ((line = reader.ReadLine()) != null) {
-                    string[] itemTokens = line.Split('\t');
+                    // Split line to isolate the guild ID.
+                    string[] guildTokens = line.Split('\t');
 
-                    uint guildId = Convert.ToUInt32(itemTokens[0]);
-
-                    string[] guildInfo = line.Split('-');
+                    // Convert gild ID from string to unsigned int.
+                    uint guildId = Convert.ToUInt32(guildTokens[0]);
+                    
+                    // Split second part of line into guild name and guild server.
+                    string[] guildInfo = guildTokens[1].Split('-');
 
                     string guildName = guildInfo[0];
                     string guildServer = guildInfo[1];
 
-
-                    // Make a Guild object.
+                    // Make a Guild object. Just send 0 for last argument since guilds from the file have yet to have a guild Type (Raiding, PVP, etc...).
                     Guild guild = new Guild(guildId, guildName, guildServer, 0);
 
-                    guildList.Add(Convert.ToUInt32(itemTokens[0]), guild);
+                    // Finally, add guild to guildList dictionary.
+                    guildList.Add(guildId, guild);
                 }
             }
 
@@ -75,7 +77,6 @@ namespace Assign2 {
                     string[] itemTokens = line.Split('\t');
 
                     //uint id, string name, Race race, Class class, uint level, uint exp, uint guildID
-
                     Player player = new Player(
                         Convert.ToUInt32(itemTokens[0]),
                         itemTokens[1],
@@ -92,7 +93,7 @@ namespace Assign2 {
 
             // Populate guild list.
             foreach(KeyValuePair<uint, Guild> entry in guildList) {
-                listBoxGuilds.Items.Add(entry.Value.ToString() + "\n"); /////////////////////////////////////////////////////////////////////// 
+                listBoxGuilds.Items.Add(String.Format("{0, -20}\t{1, -5}\n", entry.Value.Name, entry.Value.Server));  
             }
 
             // Populate player list.
@@ -117,10 +118,18 @@ namespace Assign2 {
             comboBoxClass.Items.Add(CharClass.Shaman);
 
             // Populate create guild comboBoxes.
+            comboBoxGServer.Items.Add(Servers.Beta4Azeroth);
+            comboBoxGServer.Items.Add(Servers.TKWasASetback);
+            comboBoxGServer.Items.Add(Servers.ZappyBoi);
 
+            comboBoxGType.Items.Add(GuildType.Casual);
+            comboBoxGType.Items.Add(GuildType.Mythic);
+            comboBoxGType.Items.Add(GuildType.PVP);
+            comboBoxGType.Items.Add(GuildType.Questing);
+            comboBoxGType.Items.Add(GuildType.Raiding);
         }
 
-        private void button7_Click(object sender, EventArgs e) {
+        private void buttonMusic_Click(object sender, EventArgs e) {
             SoundPlayer simpleSound = new SoundPlayer(@"..\..\..\Resources\out.wav");
 
             if (!musicStatus) {
@@ -140,8 +149,33 @@ namespace Assign2 {
 
         }
 
-        private void guildButton_Click(object sender, EventArgs e) {
+        /*  
+         *  Method:     buttonPrintGRoster_Click
+         *  
+         *  Purpose:    Handles when the user clicks "Print Guild Roster" button.
+         * 
+         *  Arguments:  object      The publisher of the event.
+         *              EventArgs   Event data from the publisher.
+         */
+        private void buttonPrintGRoster_Click(object sender, EventArgs e) {
+            // Clear the Output field.
+            richTextOutput.Clear();
 
+            // Get selected guild's ID number.
+            uint guildId = getSelectedGuildID();
+
+            string guildName = guildList[guildId].Name;
+
+            // Print header for guild roster.
+            richTextOutput.Text = String.Format("Guild Listing for {0, -25} [{1}]\n", guildName, guildList[guildId].Server);
+            richTextOutput.Text += String.Format("---------------------------------------------------------------------------------\n");
+
+            // Now that we have the guildID, print all player associated with that guildID.
+            foreach(KeyValuePair<uint, Player> player in playerList) {
+                if (guildId == player.Value.GuildID) {
+                    richTextOutput.Text += String.Format( "Name: {0, -20} Race: {1, -15} Level: {2, -10} Guild: {3}\n", player.Value.Name, player.Value.Race, player.Value.Level, guildName);
+                }
+            }
         }
 
         private void label3_Click(object sender, EventArgs e) {
@@ -189,26 +223,26 @@ namespace Assign2 {
             // If player doesn't add information to a field(s), display a warning message in the Output with missing fields listed.
             if (textBoxPName.Text == "" || comboBoxRace.SelectedIndex == -1 || comboBoxClass.SelectedIndex == -1 || comboBoxRole.SelectedIndex == -1) {
                 if (textBoxPName.Text == "") {
-                    errorMessage = new StringBuilder(errorMessage + "\n\t Player Name ");
+                    errorMessage = new StringBuilder(errorMessage + "\n\u2022 Player Name ");
                 }
 
                 if (comboBoxRace.SelectedIndex == -1) {
-                    errorMessage = new StringBuilder(errorMessage + "\n\t Player Race ");
+                    errorMessage = new StringBuilder(errorMessage + "\n\u2022 Player Race ");
                 }
 
                 if (comboBoxClass.SelectedIndex == -1) {
-                    errorMessage = new StringBuilder(errorMessage + "\n\t Player Class ");
+                    errorMessage = new StringBuilder(errorMessage + "\n\u2022 Player Class ");
                 }
                 
                 if (comboBoxRole.SelectedIndex == -1) {
-                    errorMessage = new StringBuilder(errorMessage + "\n\t Player Role ");
+                    errorMessage = new StringBuilder(errorMessage + "\n\u2022 Player Role ");
                 }
 
                 richTextOutput.Text = errorMessage.ToString();
             } else { // Add player to the system.
                 //var classNum = Enum.IsDefined(typeof(CharClass), comboBoxClass.SelectedItem.ToString());
                 Race raceEnum = (Race)System.Enum.Parse(typeof(Race), comboBoxRace.SelectedItem.ToString());
-                
+
                 // Get enum value of race.
                 int raceNum = (int) raceEnum;
 
@@ -219,7 +253,7 @@ namespace Assign2 {
                 int classNum = (int) classEnum;
 
                 // Make a new player based on information grabbed from the four player fields in the form.
-                Player newPlayer = new Player(playerId, textBoxPName.Text, (Race) raceNum, (CharClass) classNum, 0, 0, 154794);
+                Player newPlayer = new Player(playerId, textBoxPName.Text, (Race) raceNum, (CharClass) classNum, 0, 0, 0);
                 
                 // Add the new player to the players dictionary (Key: playerId  Value: newPlayer).
                 playerList.Add(playerId, newPlayer);
@@ -313,7 +347,7 @@ namespace Assign2 {
          */
         private void buttonAddGuild_Click(object sender, EventArgs e) {
             // Reset output field to blank.
-            richTextOutput.Text = "";
+            richTextOutput.Clear();
 
             // Error message for when user doesn't put in values in the player creation fields. 
             String guildFieldsError = "Couldn't add guild. Missing Information: ";
@@ -322,20 +356,20 @@ namespace Assign2 {
             // If player doesn't add information to a field(s), display a warning message in the Output with missing fields listed.
             if (textBoxGName.Text == "" || comboBoxGServer.SelectedIndex == -1 || comboBoxGType.SelectedIndex == -1) {
                 if (textBoxGName.Text == "") {
-                    errorMessage = new StringBuilder(errorMessage + "\n\t Guild Name ");
+                    errorMessage = new StringBuilder(errorMessage + "\n\u2022 Guild Name ");
                 }
 
                 if (comboBoxGServer.SelectedIndex == -1) {
-                    errorMessage = new StringBuilder(errorMessage + "\n\t Guild Server ");
+                    errorMessage = new StringBuilder(errorMessage + "\n\u2022 Guild Server ");
                 }
 
                 if (comboBoxGType.SelectedIndex == -1) {
-                    errorMessage = new StringBuilder(errorMessage + "\n\t Guild Type ");
+                    errorMessage = new StringBuilder(errorMessage + "\n\u2022 Guild Type ");
                 }
 
                 richTextOutput.Text = errorMessage.ToString();
             } else { // Add the guild to the system.
-                // Objectify!
+                // Make a new Guild object with data from form fields.
                 Guild newGuild = new Guild(guildId, textBoxGName.Text, comboBoxGServer.SelectedItem.ToString(), 0);
 
                 // Add the new player to the players dictionary (Key: playerId  Value: newPlayer).
@@ -346,10 +380,10 @@ namespace Assign2 {
 
                 // Display the new player list by adding the updated Player dictionary. 
                 foreach (KeyValuePair<uint, Guild> entry in guildList) {
-                    listBoxGuilds.Items.Add(String.Format("{0, -17} \n", entry.Value));
+                    listBoxGuilds.Items.Add(String.Format("{0, -20}\t{1, -5}\n", entry.Value.Name, entry.Value.Server));
                 }
 
-                richTextOutput.Text = String.Format(String.Format("{0, -17} guild has been added. \n", textBoxGName.Text));
+                richTextOutput.Text = String.Format(String.Format("{0} guild has been added. \n", textBoxGName.Text));
 
                 // Reset player creation fields to blank.
                 textBoxGName.Text = "";
@@ -359,6 +393,44 @@ namespace Assign2 {
                 // Increment player ID by one for the next new player.
                 guildId++;
             }
+        }
+
+        private void buttonDisbandGuild_Click(object sender, EventArgs e) {
+
+        }
+
+        /*  
+         *  Method:     getSelectedGuildID
+         *  
+         *  Purpose:    Custom helper function to obtain a guild's ID number via guild name.
+         * 
+         *  Arguments:  none
+         */
+        private uint getSelectedGuildID() {
+            uint guildId = 0;   // Guild ID. Used to grab all players from a guild with that ID.
+
+            // Get selected guild content from listBox.
+            string guildString = listBoxGuilds.SelectedItem.ToString();
+
+            // Tokenize the selection.
+            string[] guildInfo = guildString.Split('\t');
+
+            // Grab name of guild.
+            string guildName = guildInfo[0];
+
+            // Trim off any trailing white space.
+            guildName = guildName.TrimEnd();
+
+            // See if selected guild name exists in guildList dictionary.
+            foreach (KeyValuePair<uint, Guild> guild in guildList) {
+                //if (guild.Value.Name == guildName) {
+                if (guildName.Equals(guild.Value.Name)) {
+                    // Grab guild ID.
+                    guildId = guild.Value.ID;
+                }
+            }
+
+            return guildId;
         }
     }
 }

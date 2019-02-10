@@ -19,7 +19,7 @@ namespace Assign2 {
         readonly Race race;             // Race of player.
         readonly CharClass charClass;   // Race of player.
         uint level;                     // Level of player.
-        uint exp;                       // Player's accumulated experience.
+        uint exp;                       // Player's accumulated experience within a level. Resets to 0 every level up.
         uint guildID;                   // ID of guild that player is in.
 
         public Player() {
