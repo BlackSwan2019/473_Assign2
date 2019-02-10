@@ -27,21 +27,24 @@ namespace Assign2 {
     }
 
     // Servers
-    public enum Servers {
+    public enum Server {
         Beta4Azeroth, TKWasASetback, ZappyBoi
     }
 
     public partial class Form1 : Form {
-        uint playerId = 0;
-        uint guildId = 0;
+        uint playerId = 0;  // Player ID number.
+        uint guildId = 0;   // Guild ID number.
 
-        bool musicStatus = false;
+        bool musicStatus = true;
 
         private static Dictionary<uint, Player> playerList = new Dictionary<uint, Player>();    // Player dictionary.
         private static Dictionary<uint, Guild> guildList = new Dictionary<uint, Guild>();       // Player dictionary.
 
         public Form1() {
             InitializeComponent();
+
+            SoundPlayer music = new SoundPlayer(@"..\..\..\Resources\out.wav");
+            music.Play();
 
             // Build Guild dictionary
             using (var reader = new StreamReader(@"..\..\..\Resources\guilds.txt")) {
@@ -98,8 +101,13 @@ namespace Assign2 {
 
             // Populate player list.
             foreach (KeyValuePair<uint, Player> entry in playerList) {
-                listBoxPlayers.Items.Add(String.Format("{0, -17}\t{1, -17} {2, -5}\n", entry.Value.Name, entry.Value.CharClass, entry.Value.Level));
+                listBoxPlayers.Items.Add(String.Format("{0, -17}\t{1, -11} {2, -5}\n", entry.Value.Name, entry.Value.CharClass, entry.Value.Level));
             }
+
+            // Populate server comboBox.
+            comboBoxServer.Items.Add(Server.Beta4Azeroth);
+            comboBoxServer.Items.Add(Server.TKWasASetback);
+            comboBoxServer.Items.Add(Server.ZappyBoi);
 
             // Populate create player comboBoxes.
             comboBoxRace.Items.Add(Race.Forsaken);
@@ -118,9 +126,9 @@ namespace Assign2 {
             comboBoxClass.Items.Add(CharClass.Shaman);
 
             // Populate create guild comboBoxes.
-            comboBoxGServer.Items.Add(Servers.Beta4Azeroth);
-            comboBoxGServer.Items.Add(Servers.TKWasASetback);
-            comboBoxGServer.Items.Add(Servers.ZappyBoi);
+            comboBoxGServer.Items.Add(Server.Beta4Azeroth);
+            comboBoxGServer.Items.Add(Server.TKWasASetback);
+            comboBoxGServer.Items.Add(Server.ZappyBoi);
 
             comboBoxGType.Items.Add(GuildType.Casual);
             comboBoxGType.Items.Add(GuildType.Mythic);
@@ -130,14 +138,16 @@ namespace Assign2 {
         }
 
         private void buttonMusic_Click(object sender, EventArgs e) {
-            SoundPlayer simpleSound = new SoundPlayer(@"..\..\..\Resources\out.wav");
+            SoundPlayer music = new SoundPlayer(@"..\..\..\Resources\out.wav");
 
             if (!musicStatus) {
-                simpleSound.Play();
+                music.Play();
                 musicStatus = true;
+                buttonMusic.Text = "Stop Music";
             } else {
-                simpleSound.Stop();
+                music.Stop();
                 musicStatus = false;
+                buttonMusic.Text = "Play Music";
             }
         }
 
@@ -277,7 +287,7 @@ namespace Assign2 {
 
                 // Display the new player list by adding the updated Player dictionary. 
                 foreach (KeyValuePair<uint, Player> entry in playerList) {
-                    listBoxPlayers.Items.Add(String.Format("{0, -17}\t{1, -17} {2, -5}\n", entry.Value.Name, entry.Value.CharClass, entry.Value.Level));
+                    listBoxPlayers.Items.Add(String.Format("{0, -17}\t{1, -11} {2, -5}\n", entry.Value.Name, entry.Value.CharClass, entry.Value.Level));
                 }
 
                 richTextOutput.Text = String.Format("{0} the {1} has been added.", newPlayer.Name, newPlayer.CharClass);
@@ -532,7 +542,8 @@ namespace Assign2 {
          *  
          *  Purpose:    Handles when user click "Join Guild" button.
          * 
-         *  Arguments:  none
+         *  Arguments:  object      The publisher of the event.
+         *              EventArgs   Event data from the publisher.
          */
         private void buttonJoinGuild_Click(object sender, EventArgs e) {
             // Reset Output field to blank.
@@ -541,10 +552,13 @@ namespace Assign2 {
             // Get selected player's ID number.
             uint playerId = getSelectedPlayerID();
 
+            // Get selected guild's ID number.
             uint guildId = getSelectedGuildID();
 
+            // Set plaayer's guild ID to the newly joined guild's ID.
             playerList[playerId].JoinGuild(guildId);
 
+            // Display message saying that the player has joined the guild.
             richTextOutput.Text = String.Format("Player {0} has join guild {1}!", playerList[playerId].Name, guildList[guildId].Name);
         }
 
@@ -553,7 +567,8 @@ namespace Assign2 {
          *  
          *  Purpose:    Handles when user click "Leave Guild" button.
          * 
-         *  Arguments:  none
+         *  Arguments:  object      The publisher of the event.
+         *              EventArgs   Event data from the publisher.
          */
         private void buttonLeaveGuild_Click(object sender, EventArgs e) {
             // Reset Output field to blank.
@@ -573,6 +588,38 @@ namespace Assign2 {
 
             // Display message saying the character has left the guild.
             richTextOutput.Text = String.Format("Player {0} has left guild {1}!", playerList[playerId].Name, guildName);
+        }
+
+        /*  
+         *  Method:     buttonSearch_Click
+         *  
+         *  Purpose:    Handles when user click "Apply Search Criteria" button.
+         * 
+         *  Arguments:  object      The publisher of the event.
+         *              EventArgs   Event data from the publisher.
+         */
+        private void buttonSearch_Click(object sender, EventArgs e) {
+            // Reset listBoxe fields to empty.
+            listBoxPlayers.Items.Clear();
+            listBoxGuilds.Items.Clear();
+
+            // Grab the character's name being serarched for.
+            string playerName = textBoxSearchName.Text;
+            string serverName = comboBoxServer.Text;
+
+            // Loop through the player list dictionary, looking for matches to the search.
+            foreach(KeyValuePair<uint, Player> player in playerList) {
+                if (player.Value.Name.StartsWith(playerName)) {
+                    listBoxPlayers.Items.Add(String.Format("{0, -17}\t{1, -11} {2, -5}\n", player.Value.Name, player.Value.CharClass, player.Value.Level));
+                }
+            }
+
+            // Loop through the player list dictionary, looking for matches to the search.
+            foreach (KeyValuePair<uint, Guild> guild in guildList) {
+                if (guild.Value.Server.Equals(serverName)) {
+                    listBoxGuilds.Items.Add(String.Format("{0, -20}\t{1, -5}\n", guild.Value.Name, guild.Value.Server));
+                }
+            }
         }
     }
 }

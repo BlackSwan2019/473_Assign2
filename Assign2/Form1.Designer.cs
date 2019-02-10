@@ -27,9 +27,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.textBoxSearchName = new System.Windows.Forms.TextBox();
+            this.buttonSearch = new System.Windows.Forms.Button();
             this.buttonLeaveGuild = new System.Windows.Forms.Button();
             this.buttonJoinGuild = new System.Windows.Forms.Button();
             this.buttonDisbandGuild = new System.Windows.Forms.Button();
@@ -59,6 +58,7 @@
             this.listBoxPlayers = new System.Windows.Forms.ListBox();
             this.listBoxGuilds = new System.Windows.Forms.ListBox();
             this.richTextOutput = new System.Windows.Forms.RichTextBox();
+            this.comboBoxServer = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -77,11 +77,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBoxServer);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Controls.Add(this.textBoxSearchName);
+            this.groupBox1.Controls.Add(this.buttonSearch);
             this.groupBox1.Controls.Add(this.buttonLeaveGuild);
             this.groupBox1.Controls.Add(this.buttonJoinGuild);
             this.groupBox1.Controls.Add(this.buttonDisbandGuild);
@@ -114,31 +114,24 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Search Guild (by Server)";
             // 
-            // textBox2
+            // textBoxSearchName
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(165, 33);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(159, 26);
-            this.textBox2.TabIndex = 6;
+            this.textBoxSearchName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxSearchName.Location = new System.Drawing.Point(165, 33);
+            this.textBoxSearchName.Name = "textBoxSearchName";
+            this.textBoxSearchName.Size = new System.Drawing.Size(173, 26);
+            this.textBoxSearchName.TabIndex = 6;
             // 
-            // textBox1
+            // buttonSearch
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(165, 83);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(159, 26);
-            this.textBox1.TabIndex = 5;
-            // 
-            // button4
-            // 
-            this.button4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button4.Location = new System.Drawing.Point(6, 147);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(138, 26);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Apply Search Criteria";
-            this.button4.UseVisualStyleBackColor = true;
+            this.buttonSearch.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonSearch.Location = new System.Drawing.Point(6, 147);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(138, 26);
+            this.buttonSearch.TabIndex = 4;
+            this.buttonSearch.Text = "Apply Search Criteria";
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
             // buttonLeaveGuild
             // 
@@ -416,7 +409,7 @@
             this.buttonMusic.Name = "buttonMusic";
             this.buttonMusic.Size = new System.Drawing.Size(97, 26);
             this.buttonMusic.TabIndex = 9;
-            this.buttonMusic.Text = "Music Toggle";
+            this.buttonMusic.Text = "Stop Music";
             this.buttonMusic.UseVisualStyleBackColor = true;
             this.buttonMusic.Click += new System.EventHandler(this.buttonMusic_Click);
             // 
@@ -452,6 +445,15 @@
             this.richTextOutput.Size = new System.Drawing.Size(1169, 132);
             this.richTextOutput.TabIndex = 23;
             this.richTextOutput.Text = "";
+            // 
+            // comboBoxServer
+            // 
+            this.comboBoxServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxServer.FormattingEnabled = true;
+            this.comboBoxServer.Location = new System.Drawing.Point(165, 87);
+            this.comboBoxServer.Name = "comboBoxServer";
+            this.comboBoxServer.Size = new System.Drawing.Size(173, 26);
+            this.comboBoxServer.TabIndex = 16;
             // 
             // Form1
             // 
@@ -490,9 +492,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox textBoxSearchName;
+        private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.Button buttonLeaveGuild;
         private System.Windows.Forms.Button buttonJoinGuild;
         private System.Windows.Forms.Button buttonDisbandGuild;
@@ -522,6 +523,7 @@
         private System.Windows.Forms.ComboBox comboBoxRace;
         private System.Windows.Forms.ComboBox comboBoxGType;
         private System.Windows.Forms.ComboBox comboBoxGServer;
+        private System.Windows.Forms.ComboBox comboBoxServer;
     }
 }
 
