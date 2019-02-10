@@ -521,10 +521,7 @@ namespace Assign2 {
 
             uint guildId = getSelectedGuildID();
 
-            //playerList[playerId].JoinGuild(guildI);
-
-            richTextOutput.Text = playerList[playerId].ToString();
-
+            playerList[playerId].JoinGuild(guildId);
         }
     }
 }

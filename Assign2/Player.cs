@@ -10,7 +10,7 @@ namespace Assign2 {
     * Description: Game character.
     */
     public class Player {
-        private static Dictionary<uint, string> guildList = new Dictionary<uint, string>();     // Guild dictionary.
+        //private static Dictionary<uint, string> guildList = new Dictionary<uint, string>();     // Guild dictionary.
 
         private static uint MAX_LEVEL = 60;     // Highest level a player can be.
 
@@ -123,14 +123,7 @@ namespace Assign2 {
                 LeaveGuild();
             }
 
-            string guildName = "N/A";
-            if (guildList.ContainsKey(guildID)) {
-                this.GuildID = guildID;
-                guildName = guildList[this.GuildID];
-                Console.WriteLine(this.Name + " has joined the guild: " + guildName);
-            } else {
-                throw new Exception("Unable to find guild with ID: " + guildID);
-            }
+            this.GuildID = guildID;
         }
 
         public void LeaveGuild() {
@@ -138,26 +131,14 @@ namespace Assign2 {
             if (this.GuildID == 0) {
                 throw new Exception("You must be in a guild to leave a guild...");
             }
-            string guildName = "N/A";
-            if (guildList.ContainsKey(this.guildID)) {
-                guildName = guildList[this.GuildID];
-            }
 
             this.GuildID = 0;
-
-            Console.WriteLine(this.Name + " has left the guild: " + guildName);
-
         }
 
         public override string ToString() {
-            string guildName = "None";
-            if (guildList.ContainsKey(this.GuildID)) {
-                guildName = guildList[this.GuildID];
-            }
             return "" + String.Format("Name: {0,-20}", this.Name) +
                    "" + String.Format("Race: {0,-20}", this.Race) +
-                   "" + String.Format("Level: {0,-15}", this.Level) +
-                   "" + String.Format("Guild: {0,-20}", guildName) + "";
+                   "" + String.Format("Level: {0,-15}", this.Level);
         }
 
     }
