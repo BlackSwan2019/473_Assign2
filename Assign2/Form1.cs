@@ -98,7 +98,7 @@ namespace Assign2 {
 
             // Populate player list.
             foreach (KeyValuePair<uint, Player> entry in playerList) {
-                listBoxPlayers.Items.Add(String.Format("{0, -17} {1, -17} {2, -5}\n", entry.Value.Name, entry.Value.CharClass, entry.Value.Level));
+                listBoxPlayers.Items.Add(String.Format("{0, -17}\t{1, -17} {2, -5}\n", entry.Value.Name, entry.Value.CharClass, entry.Value.Level));
             }
 
             // Populate create player comboBoxes.
@@ -263,7 +263,7 @@ namespace Assign2 {
 
                 // Display the new player list by adding the updated Player dictionary. 
                 foreach (KeyValuePair<uint, Player> entry in playerList) {
-                    listBoxPlayers.Items.Add(String.Format("{0, -17} {1, -17} {2, -5}\n", entry.Value.Name, entry.Value.CharClass, entry.Value.Level));
+                    listBoxPlayers.Items.Add(String.Format("{0, -17}\t{1, -17} {2, -5}\n", entry.Value.Name, entry.Value.CharClass, entry.Value.Level));
                 }
 
                 richTextOutput.Text = String.Format("{0} the {1} has been added.", newPlayer.Name, newPlayer.CharClass);
@@ -457,7 +457,7 @@ namespace Assign2 {
         private uint getSelectedGuildID() {
             uint guildId = 0;   // Guild ID. Used to grab all players from a guild with that ID.
 
-            // Get selected guild content from listBox.
+            // Get selected guild string from listBox.
             string guildString = listBoxGuilds.SelectedItem.ToString();
 
             // Tokenize the selection.
@@ -471,7 +471,6 @@ namespace Assign2 {
 
             // See if selected guild name exists in guildList dictionary.
             foreach (KeyValuePair<uint, Guild> guild in guildList) {
-                //if (guild.Value.Name == guildName) {
                 if (guildName.Equals(guild.Value.Name)) {
                     // Grab guild ID.
                     guildId = guild.Value.ID;
@@ -479,6 +478,53 @@ namespace Assign2 {
             }
 
             return guildId;
+        }
+
+        /*  
+         *  Method:     getSelectedPlayerID
+         *  
+         *  Purpose:    Custom helper function to obtain a player's ID number via player name.
+         * 
+         *  Arguments:  none
+         */
+        private uint getSelectedPlayerID() {
+            uint playerId = 0;   // Player ID. Used to grab all players from a guild with that ID.
+
+            // Get selected player string from listBox.
+            string playerString = listBoxPlayers.SelectedItem.ToString();
+
+            // Tokenize the selection.
+            string[] playerInfo = playerString.Split('\t');
+
+            // Grab name of player.
+            string playerName = playerInfo[0];
+
+            // Trim off any trailing white space.
+            playerName = playerName.TrimEnd();
+
+            // See if selected player name exists in playerList dictionary.
+            foreach (KeyValuePair<uint, Player> player in playerList) {
+                if (playerName.Equals(player.Value.Name)) {
+                    // Grab player ID.
+                    playerId = player.Value.ID;
+                }
+            }
+
+            return playerId;
+        }
+
+        private void buttonJoinGuild_Click(object sender, EventArgs e) {
+            richTextOutput.Clear();
+
+            // Get selected player's ID number.
+            uint playerId = getSelectedPlayerID();
+
+            uint guildId = getSelectedGuildID();
+
+            //playerList[playerId].JoinGuild(guildI);
+
+            richTextOutput.Text = playerList[playerId].ToString();
+
         }
     }
 }
