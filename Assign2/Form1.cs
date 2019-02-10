@@ -395,8 +395,56 @@ namespace Assign2 {
             }
         }
 
+        /*  
+         *  Method:     buttonDisbandGuild_Click
+         *  
+         *  Purpose:    Handles when a user clicks the "Disband Guild" button.
+         * 
+         *  Arguments:  object      The publisher of the event.
+         *              EventArgs   Event data from the publisher.
+         */
         private void buttonDisbandGuild_Click(object sender, EventArgs e) {
+            uint playerCount = 0;
+            StringBuilder guildlessPlayers = new StringBuilder("");
 
+            // Reset Output field to blank.
+            richTextOutput.Clear();
+
+            // Get the selected guild's ID number.
+            uint guildId = getSelectedGuildID();
+
+            // Grab it's name for later output.
+            string guildName = guildList[guildId].Name;
+
+            // Remove guild from guild dictionary.
+            guildList.Remove(guildId);
+
+            // Display message in Output field that the guild was disbanded.
+            richTextOutput.Text = String.Format("{0} has been disbanded. ", guildName);
+
+            // Loop through the player list dictionary and set the disbanded guild's players' guild IDs to 0, since they are no longer in a guild.
+            foreach (KeyValuePair<uint, Player> player in playerList) {
+                // If player's guild ID is the same as the guild ID of the guild that is being disbanded...
+                if (player.Value.GuildID == guildId) {
+                    // Set player's guild ID to 0.
+                    player.Value.GuildID = 0;
+
+                    guildlessPlayers = new StringBuilder(guildlessPlayers + String.Format("\nName: {0, -15} Race: {1, -10} Level: {2, -10}", player.Value.Name, player.Value.Race, player.Value.Level));
+
+                    playerCount++;
+                }
+            }
+
+            // Display message in Output field that the guild was disbanded.
+            richTextOutput.Text += String.Format("{0} players are now guildless!{1}", playerCount, guildlessPlayers);
+
+            // Clear guild list to make way for new list.
+            listBoxGuilds.Items.Clear();
+
+            // Display the new player list by adding the updated Player dictionary. 
+            foreach (KeyValuePair<uint, Guild> guild in guildList) {
+                listBoxGuilds.Items.Add(String.Format("{0, -20}\t{1, -5}\n", guild.Value.Name, guild.Value.Server));
+            }
         }
 
         /*  
