@@ -30,7 +30,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonLeaveGuild = new System.Windows.Forms.Button();
             this.buttonJoinGuild = new System.Windows.Forms.Button();
             this.buttonDisbandGuild = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -82,7 +82,7 @@
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.buttonLeaveGuild);
             this.groupBox1.Controls.Add(this.buttonJoinGuild);
             this.groupBox1.Controls.Add(this.buttonDisbandGuild);
             this.groupBox1.Controls.Add(this.buttonPrintGRoster);
@@ -140,15 +140,16 @@
             this.button4.Text = "Apply Search Criteria";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // buttonLeaveGuild
             // 
-            this.button3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button3.Location = new System.Drawing.Point(6, 115);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(138, 26);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Leave Guild";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonLeaveGuild.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonLeaveGuild.Location = new System.Drawing.Point(6, 115);
+            this.buttonLeaveGuild.Name = "buttonLeaveGuild";
+            this.buttonLeaveGuild.Size = new System.Drawing.Size(138, 26);
+            this.buttonLeaveGuild.TabIndex = 3;
+            this.buttonLeaveGuild.Text = "Leave Guild";
+            this.buttonLeaveGuild.UseVisualStyleBackColor = true;
+            this.buttonLeaveGuild.Click += new System.EventHandler(this.buttonLeaveGuild_Click);
             // 
             // buttonJoinGuild
             // 
@@ -441,6 +442,7 @@
             this.listBoxGuilds.Name = "listBoxGuilds";
             this.listBoxGuilds.Size = new System.Drawing.Size(320, 516);
             this.listBoxGuilds.TabIndex = 22;
+            this.listBoxGuilds.SelectedIndexChanged += new System.EventHandler(this.listBoxGuilds_SelectedIndexChanged);
             // 
             // richTextOutput
             // 
@@ -491,7 +493,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonLeaveGuild;
         private System.Windows.Forms.Button buttonJoinGuild;
         private System.Windows.Forms.Button buttonDisbandGuild;
         private System.Windows.Forms.Label label1;

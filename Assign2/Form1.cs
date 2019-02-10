@@ -199,9 +199,23 @@ namespace Assign2 {
         }
 
         private void listBoxPlayers_SelectedIndexChanged(object sender, EventArgs e) {
-            ListBox listbox = sender as ListBox;
+            // Get player ID.
+            uint playerId = getSelectedPlayerID();
+            // Create player object.
+            Player player = playerList[playerId];
 
-            richTextOutput.Text = listbox.SelectedItem.ToString();
+            // Display selected character's info in the Output field.
+            richTextOutput.Text = String.Format("Name: {0, -15} Race: {1, -10} Class: {2, -10} Level: {3, -10}", player.Name, player.Race, player.CharClass, player.Level);
+        }
+
+        private void listBoxGuilds_SelectedIndexChanged(object sender, EventArgs e) {
+            // Get player ID.
+            uint guildId = getSelectedGuildID();
+            // Create player object.
+            Guild guild = guildList[guildId];
+
+            // Display selected character's info in the Output field.
+            richTextOutput.Text = String.Format("Name: {0, -20} Server: {1, -15} Type: {2, -10}", guild.Name, guild.Server, guild.Type);
         }
 
         /*  
@@ -513,7 +527,15 @@ namespace Assign2 {
             return playerId;
         }
 
+        /*  
+         *  Method:     buttonJoinGuild_Click
+         *  
+         *  Purpose:    Handles when user click "Join Guild" button.
+         * 
+         *  Arguments:  none
+         */
         private void buttonJoinGuild_Click(object sender, EventArgs e) {
+            // Reset Output field to blank.
             richTextOutput.Clear();
 
             // Get selected player's ID number.
@@ -522,6 +544,35 @@ namespace Assign2 {
             uint guildId = getSelectedGuildID();
 
             playerList[playerId].JoinGuild(guildId);
+
+            richTextOutput.Text = String.Format("Player {0} has join guild {1}!", playerList[playerId].Name, guildList[guildId].Name);
+        }
+
+        /*  
+         *  Method:     buttonLeaveGuild_Click
+         *  
+         *  Purpose:    Handles when user click "Leave Guild" button.
+         * 
+         *  Arguments:  none
+         */
+        private void buttonLeaveGuild_Click(object sender, EventArgs e) {
+            // Reset Output field to blank.
+            richTextOutput.Clear();
+
+            // Get selected player's ID number.
+            uint playerId = getSelectedPlayerID();
+
+            // Get the guild ID.
+            uint guildId = getSelectedGuildID();
+
+            // Convert that guild ID to the name of the guild.
+            string guildName = guildList[guildId].Name;
+
+            // Have player leave their guild.
+            playerList[playerId].LeaveGuild();
+
+            // Display message saying the character has left the guild.
+            richTextOutput.Text = String.Format("Player {0} has left guild {1}!", playerList[playerId].Name, guildName);
         }
     }
 }
