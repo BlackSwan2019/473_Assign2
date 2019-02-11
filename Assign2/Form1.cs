@@ -663,14 +663,15 @@ namespace Assign2 {
          *              EventArgs   Event data from the publisher.
          */
         private void buttonLeaveGuild_Click(object sender, EventArgs e) {
-            // Get selected player's ID number.
-            uint playerId = getSelectedPlayerID();
-
-            // Get the player's guild ID number.
-            uint guildId = playerList[playerId].GuildID;
-
-            // If player has selected bot a player and a guild...
             if (listBoxPlayers.SelectedIndex != -1 && listBoxGuilds.SelectedIndex != -1) {
+
+                // Get selected player's ID number.
+                uint playerId = getSelectedPlayerID();
+
+                // Get the player's guild ID number.
+                uint guildId = playerList[playerId].GuildID;
+
+                // If player has selected bot a player and a guild...
                 if (guildId != 0) {
                     // Reset Output field to blank.
                     richTextOutput.Clear();
@@ -719,13 +720,23 @@ namespace Assign2 {
             if (comboBoxServer.SelectedIndex != -1) {
                 listBoxGuilds.Items.Clear();
 
-                // Loop through the player list dictionary, looking for matches to the search.
+                // Loop through the guild list dictionary, looking for matches to the search.
                 foreach (KeyValuePair<uint, Guild> guild in guildList) {
                     if (guild.Value.Server.Equals(serverName)) {
                         listBoxGuilds.Items.Add(String.Format("{0, -20}\t[{1, -5}]\n", guild.Value.Name, guild.Value.Server));
                     }
                 }
-            } 
+            } else {
+                listBoxGuilds.Items.Clear();
+
+                foreach (KeyValuePair<uint, Guild> guild in guildList) {
+                    listBoxGuilds.Items.Add(String.Format("{0, -20}\t[{1, -5}]\n", guild.Value.Name, guild.Value.Server));
+                }
+            }
+        }
+
+        private void resetServerSearch_Click(object sender, EventArgs e) {
+            comboBoxServer.SelectedIndex = -1;
         }
     }
 }

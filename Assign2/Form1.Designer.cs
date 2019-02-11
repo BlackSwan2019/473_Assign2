@@ -25,6 +25,8 @@
         private void InitializeComponent() {
             this.buttonPrintGRoster = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.comboBoxServer = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxSearchName = new System.Windows.Forms.TextBox();
@@ -58,7 +60,6 @@
             this.listBoxPlayers = new System.Windows.Forms.ListBox();
             this.listBoxGuilds = new System.Windows.Forms.ListBox();
             this.richTextOutput = new System.Windows.Forms.RichTextBox();
-            this.comboBoxServer = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -77,6 +78,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.comboBoxServer);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
@@ -94,6 +96,26 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Management  Functions";
+            // 
+            // button1
+            // 
+            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.Location = new System.Drawing.Point(345, 87);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(76, 26);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Reset";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.resetServerSearch_Click);
+            // 
+            // comboBoxServer
+            // 
+            this.comboBoxServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxServer.FormattingEnabled = true;
+            this.comboBoxServer.Location = new System.Drawing.Point(165, 87);
+            this.comboBoxServer.Name = "comboBoxServer";
+            this.comboBoxServer.Size = new System.Drawing.Size(173, 26);
+            this.comboBoxServer.TabIndex = 7;
             // 
             // label3
             // 
@@ -405,7 +427,7 @@
             // buttonMusic
             // 
             this.buttonMusic.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonMusic.Location = new System.Drawing.Point(1094, 17);
+            this.buttonMusic.Location = new System.Drawing.Point(1081, 17);
             this.buttonMusic.Name = "buttonMusic";
             this.buttonMusic.Size = new System.Drawing.Size(97, 26);
             this.buttonMusic.TabIndex = 9;
@@ -433,7 +455,7 @@
             this.listBoxGuilds.ItemHeight = 16;
             this.listBoxGuilds.Location = new System.Drawing.Point(840, 93);
             this.listBoxGuilds.Name = "listBoxGuilds";
-            this.listBoxGuilds.Size = new System.Drawing.Size(351, 516);
+            this.listBoxGuilds.Size = new System.Drawing.Size(338, 516);
             this.listBoxGuilds.TabIndex = 18;
             this.listBoxGuilds.SelectedIndexChanged += new System.EventHandler(this.listBoxGuilds_SelectedIndexChanged);
             // 
@@ -442,25 +464,16 @@
             this.richTextOutput.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextOutput.Location = new System.Drawing.Point(12, 663);
             this.richTextOutput.Name = "richTextOutput";
-            this.richTextOutput.Size = new System.Drawing.Size(1179, 132);
+            this.richTextOutput.Size = new System.Drawing.Size(1166, 132);
             this.richTextOutput.TabIndex = 23;
             this.richTextOutput.Text = "";
-            // 
-            // comboBoxServer
-            // 
-            this.comboBoxServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxServer.FormattingEnabled = true;
-            this.comboBoxServer.Location = new System.Drawing.Point(165, 87);
-            this.comboBoxServer.Name = "comboBoxServer";
-            this.comboBoxServer.Size = new System.Drawing.Size(173, 26);
-            this.comboBoxServer.TabIndex = 7;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1221, 814);
+            this.ClientSize = new System.Drawing.Size(1201, 814);
             this.Controls.Add(this.richTextOutput);
             this.Controls.Add(this.listBoxGuilds);
             this.Controls.Add(this.listBoxPlayers);
@@ -524,6 +537,7 @@
         private System.Windows.Forms.ComboBox comboBoxGType;
         private System.Windows.Forms.ComboBox comboBoxGServer;
         private System.Windows.Forms.ComboBox comboBoxServer;
+        private System.Windows.Forms.Button button1;
     }
 }
 
