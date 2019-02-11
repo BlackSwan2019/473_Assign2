@@ -90,7 +90,7 @@
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.groupBox1.Location = new System.Drawing.Point(12, 60);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(453, 195);
+            this.groupBox1.Size = new System.Drawing.Size(443, 195);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Management  Functions";
@@ -172,7 +172,7 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.label1.Font = new System.Drawing.Font("Britannic Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(426, 13);
+            this.label1.Location = new System.Drawing.Point(405, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(410, 30);
             this.label1.TabIndex = 6;
@@ -193,7 +193,7 @@
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.groupBox2.Location = new System.Drawing.Point(12, 282);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(453, 149);
+            this.groupBox2.Size = new System.Drawing.Size(443, 149);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Create New Player";
@@ -229,7 +229,7 @@
             // buttonAddPlayer
             // 
             this.buttonAddPlayer.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonAddPlayer.Location = new System.Drawing.Point(341, 37);
+            this.buttonAddPlayer.Location = new System.Drawing.Point(324, 37);
             this.buttonAddPlayer.Name = "buttonAddPlayer";
             this.buttonAddPlayer.Size = new System.Drawing.Size(97, 26);
             this.buttonAddPlayer.TabIndex = 12;
@@ -296,7 +296,7 @@
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.groupBox3.Location = new System.Drawing.Point(12, 460);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(453, 149);
+            this.groupBox3.Size = new System.Drawing.Size(443, 149);
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Create New Guild";
@@ -357,7 +357,7 @@
             // buttonAddGuild
             // 
             this.buttonAddGuild.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonAddGuild.Location = new System.Drawing.Point(341, 37);
+            this.buttonAddGuild.Location = new System.Drawing.Point(324, 38);
             this.buttonAddGuild.Name = "buttonAddGuild";
             this.buttonAddGuild.Size = new System.Drawing.Size(97, 26);
             this.buttonAddGuild.TabIndex = 4;
@@ -371,7 +371,7 @@
             this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.label8.Font = new System.Drawing.Font("Britannic Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label8.Location = new System.Drawing.Point(506, 65);
+            this.label8.Location = new System.Drawing.Point(485, 65);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(100, 30);
             this.label8.TabIndex = 14;
@@ -383,7 +383,7 @@
             this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.label12.Font = new System.Drawing.Font("Britannic Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label12.Location = new System.Drawing.Point(856, 65);
+            this.label12.Location = new System.Drawing.Point(835, 65);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(88, 30);
             this.label12.TabIndex = 16;
@@ -395,7 +395,7 @@
             this.label13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.label13.Font = new System.Drawing.Font("Britannic Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label13.Location = new System.Drawing.Point(7, 643);
+            this.label13.Location = new System.Drawing.Point(7, 634);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(94, 30);
             this.label13.TabIndex = 18;
@@ -405,7 +405,7 @@
             // buttonMusic
             // 
             this.buttonMusic.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonMusic.Location = new System.Drawing.Point(1084, 17);
+            this.buttonMusic.Location = new System.Drawing.Point(1063, 17);
             this.buttonMusic.Name = "buttonMusic";
             this.buttonMusic.Size = new System.Drawing.Size(97, 26);
             this.buttonMusic.TabIndex = 9;
@@ -419,7 +419,7 @@
             this.listBoxPlayers.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxPlayers.FormattingEnabled = true;
             this.listBoxPlayers.ItemHeight = 16;
-            this.listBoxPlayers.Location = new System.Drawing.Point(511, 93);
+            this.listBoxPlayers.Location = new System.Drawing.Point(490, 93);
             this.listBoxPlayers.Name = "listBoxPlayers";
             this.listBoxPlayers.Size = new System.Drawing.Size(320, 516);
             this.listBoxPlayers.TabIndex = 21;
@@ -431,7 +431,7 @@
             this.listBoxGuilds.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxGuilds.FormattingEnabled = true;
             this.listBoxGuilds.ItemHeight = 16;
-            this.listBoxGuilds.Location = new System.Drawing.Point(861, 93);
+            this.listBoxGuilds.Location = new System.Drawing.Point(840, 93);
             this.listBoxGuilds.Name = "listBoxGuilds";
             this.listBoxGuilds.Size = new System.Drawing.Size(320, 516);
             this.listBoxGuilds.TabIndex = 22;
@@ -440,9 +440,9 @@
             // richTextOutput
             // 
             this.richTextOutput.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextOutput.Location = new System.Drawing.Point(12, 672);
+            this.richTextOutput.Location = new System.Drawing.Point(12, 663);
             this.richTextOutput.Name = "richTextOutput";
-            this.richTextOutput.Size = new System.Drawing.Size(1169, 132);
+            this.richTextOutput.Size = new System.Drawing.Size(1148, 132);
             this.richTextOutput.TabIndex = 23;
             this.richTextOutput.Text = "";
             // 
@@ -460,7 +460,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1201, 843);
+            this.ClientSize = new System.Drawing.Size(1178, 814);
             this.Controls.Add(this.richTextOutput);
             this.Controls.Add(this.listBoxGuilds);
             this.Controls.Add(this.listBoxPlayers);

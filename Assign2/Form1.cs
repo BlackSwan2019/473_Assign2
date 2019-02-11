@@ -31,10 +31,19 @@ namespace Assign2 {
         Beta4Azeroth, TKWasASetback, ZappyBoi
     }
 
+    /*  
+         *  Class:     Form1
+         *  
+         *  Purpose:    The Player/Guild manager of the game, World of ConflictCraft.
+         * 
+         *  Arguments:  object      The publisher of the event.
+         *              EventArgs   Event data from the publisher.
+         */
     public partial class Form1 : Form {
         uint playerId = 0;  // Player ID number.
         uint guildId = 0;   // Guild ID number.
 
+        SoundPlayer music = new SoundPlayer(@"..\..\..\Resources\out.wav");
         bool musicStatus = true;
 
         private static Dictionary<uint, Player> playerList = new Dictionary<uint, Player>();    // Player dictionary.
@@ -43,7 +52,7 @@ namespace Assign2 {
         public Form1() {
             InitializeComponent();
 
-            SoundPlayer music = new SoundPlayer(@"..\..\..\Resources\out.wav");
+            // Start the background music.
             music.Play();
 
             // Build Guild dictionary
@@ -137,14 +146,21 @@ namespace Assign2 {
             comboBoxGType.Items.Add(GuildType.Raiding);
         }
 
+        /*  
+         *  Method:     buttonMusic_Click
+         *  
+         *  Purpose:    Handles when the user clicks music button to stop or start music.
+         * 
+         *  Arguments:  object      The publisher of the event.
+         *              EventArgs   Event data from the publisher.
+         */
         private void buttonMusic_Click(object sender, EventArgs e) {
-            SoundPlayer music = new SoundPlayer(@"..\..\..\Resources\out.wav");
-
+            // If music if off, play it.
             if (!musicStatus) {
                 music.Play();
                 musicStatus = true;
                 buttonMusic.Text = "Stop Music";
-            } else {
+            } else { // Else, turn off the music.
                 music.Stop();
                 musicStatus = false;
                 buttonMusic.Text = "Play Music";
@@ -168,6 +184,7 @@ namespace Assign2 {
          *              EventArgs   Event data from the publisher.
          */
         private void buttonPrintGRoster_Click(object sender, EventArgs e) {
+            // If user has selected a guild...
             if (listBoxGuilds.SelectedIndex != -1) {
                 // Clear the Output field.
                 richTextOutput.Clear();
@@ -187,7 +204,7 @@ namespace Assign2 {
                         richTextOutput.Text += String.Format("Name: {0, -20} Race: {1, -15} Level: {2, -10} Guild: {3}\n", player.Value.Name, player.Value.Race, player.Value.Level, guildName);
                     }
                 }
-            } else {
+            } else { // Else, they haven't chosen a guild from the list. Display message saying so.
                 richTextOutput.Text = "You must choose a guild from the list before seeing who is in it.";
             }
         }
@@ -212,6 +229,14 @@ namespace Assign2 {
 
         }
 
+        /*  
+         *  Method:     listBoxPlayers_SelectedIndexChanged
+         *  
+         *  Purpose:    Handles when the user selects a player in the listBoxPlayers.
+         * 
+         *  Arguments:  object      The publisher of the event.
+         *              EventArgs   Event data from the publisher.
+         */
         private void listBoxPlayers_SelectedIndexChanged(object sender, EventArgs e) {
             // Get player ID.
             uint playerId = getSelectedPlayerID();
@@ -222,6 +247,14 @@ namespace Assign2 {
             richTextOutput.Text = String.Format("Name: {0, -15} Race: {1, -10} Class: {2, -10} Level: {3, -10}", player.Name, player.Race, player.CharClass, player.Level);
         }
 
+        /*  
+         *  Method:     listBoxGuilds_SelectedIndexChanged
+         *  
+         *  Purpose:    Handles when the user selects a guild in the listBoxGuilds.
+         * 
+         *  Arguments:  object      The publisher of the event.
+         *              EventArgs   Event data from the publisher.
+         */
         private void listBoxGuilds_SelectedIndexChanged(object sender, EventArgs e) {
             // Get player ID.
             uint guildId = getSelectedGuildID();
@@ -630,24 +663,30 @@ namespace Assign2 {
          *              EventArgs   Event data from the publisher.
          */
         private void buttonLeaveGuild_Click(object sender, EventArgs e) {
+            // Get selected player's ID number.
+            uint playerId = getSelectedPlayerID();
+
+            // Get the player's guild ID number.
+            uint guildId = playerList[playerId].GuildID;
+
+            // If player has selected bot a player and a guild...
             if (listBoxPlayers.SelectedIndex != -1 && listBoxGuilds.SelectedIndex != -1) {
-                // Reset Output field to blank.
-                richTextOutput.Clear();
+                if (guildId != 0) {
+                    // Reset Output field to blank.
+                    richTextOutput.Clear();
 
-                // Get selected player's ID number.
-                uint playerId = getSelectedPlayerID();
+                    // Using the above guild ID number, get the name of that guild.
+                    string guildName = guildList[guildId].Name;
 
-                // Get the player's guild ID number.
-                uint guildId = playerList[playerId].GuildID;
+                    // Have player leave their guild.
+                    playerList[playerId].LeaveGuild();
 
-                // Using the above guild ID number, get the name of that guild.
-                string guildName = guildList[guildId].Name;
-
-                // Have player leave their guild.
-                playerList[playerId].LeaveGuild();
-
-                // Display message saying the character has left the guild.
-                richTextOutput.Text = String.Format("Player {0} has left guild {1}!", playerList[playerId].Name, guildName);
+                    // Display message saying the character has left the guild.
+                    richTextOutput.Text = String.Format("Player {0} has left guild {1}!", playerList[playerId].Name, guildName);
+                } else {
+                    // If player wasn't in a guild to begin with, display mmessage saying so.
+                    richTextOutput.Text = String.Format("Player {0} is not in a guild. ", playerList[playerId].Name);
+                }
             } else {
                 richTextOutput.Text = "Please choose a player and guild before ejecting them from their guild. ";
             }
