@@ -205,7 +205,7 @@
             this.comboBoxRole.Location = new System.Drawing.Point(165, 87);
             this.comboBoxRole.Name = "comboBoxRole";
             this.comboBoxRole.Size = new System.Drawing.Size(140, 26);
-            this.comboBoxRole.TabIndex = 15;
+            this.comboBoxRole.TabIndex = 11;
             // 
             // comboBoxClass
             // 
@@ -214,7 +214,7 @@
             this.comboBoxClass.Location = new System.Drawing.Point(9, 87);
             this.comboBoxClass.Name = "comboBoxClass";
             this.comboBoxClass.Size = new System.Drawing.Size(140, 26);
-            this.comboBoxClass.TabIndex = 14;
+            this.comboBoxClass.TabIndex = 10;
             this.comboBoxClass.SelectedIndexChanged += new System.EventHandler(this.comboBoxClass_SelectedIndexChanged);
             // 
             // comboBoxRace
@@ -224,7 +224,7 @@
             this.comboBoxRace.Location = new System.Drawing.Point(165, 37);
             this.comboBoxRace.Name = "comboBoxRace";
             this.comboBoxRace.Size = new System.Drawing.Size(140, 26);
-            this.comboBoxRace.TabIndex = 13;
+            this.comboBoxRace.TabIndex = 9;
             // 
             // buttonAddPlayer
             // 
@@ -262,7 +262,7 @@
             this.textBoxPName.Location = new System.Drawing.Point(9, 38);
             this.textBoxPName.Name = "textBoxPName";
             this.textBoxPName.Size = new System.Drawing.Size(135, 26);
-            this.textBoxPName.TabIndex = 9;
+            this.textBoxPName.TabIndex = 8;
             // 
             // label4
             // 
@@ -308,7 +308,7 @@
             this.comboBoxGType.Location = new System.Drawing.Point(165, 88);
             this.comboBoxGType.Name = "comboBoxGType";
             this.comboBoxGType.Size = new System.Drawing.Size(140, 26);
-            this.comboBoxGType.TabIndex = 17;
+            this.comboBoxGType.TabIndex = 15;
             // 
             // comboBoxGServer
             // 
@@ -317,7 +317,7 @@
             this.comboBoxGServer.Location = new System.Drawing.Point(165, 38);
             this.comboBoxGServer.Name = "comboBoxGServer";
             this.comboBoxGServer.Size = new System.Drawing.Size(140, 26);
-            this.comboBoxGServer.TabIndex = 16;
+            this.comboBoxGServer.TabIndex = 14;
             // 
             // label9
             // 
@@ -334,7 +334,7 @@
             this.textBoxGName.Location = new System.Drawing.Point(9, 38);
             this.textBoxGName.Name = "textBoxGName";
             this.textBoxGName.Size = new System.Drawing.Size(135, 26);
-            this.textBoxGName.TabIndex = 9;
+            this.textBoxGName.TabIndex = 13;
             // 
             // label10
             // 
@@ -360,7 +360,7 @@
             this.buttonAddGuild.Location = new System.Drawing.Point(324, 38);
             this.buttonAddGuild.Name = "buttonAddGuild";
             this.buttonAddGuild.Size = new System.Drawing.Size(97, 26);
-            this.buttonAddGuild.TabIndex = 4;
+            this.buttonAddGuild.TabIndex = 16;
             this.buttonAddGuild.Text = "Add Guild";
             this.buttonAddGuild.UseVisualStyleBackColor = true;
             this.buttonAddGuild.Click += new System.EventHandler(this.buttonAddGuild_Click);
@@ -405,7 +405,7 @@
             // buttonMusic
             // 
             this.buttonMusic.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonMusic.Location = new System.Drawing.Point(1063, 17);
+            this.buttonMusic.Location = new System.Drawing.Point(1094, 17);
             this.buttonMusic.Name = "buttonMusic";
             this.buttonMusic.Size = new System.Drawing.Size(97, 26);
             this.buttonMusic.TabIndex = 9;
@@ -422,7 +422,7 @@
             this.listBoxPlayers.Location = new System.Drawing.Point(490, 93);
             this.listBoxPlayers.Name = "listBoxPlayers";
             this.listBoxPlayers.Size = new System.Drawing.Size(320, 516);
-            this.listBoxPlayers.TabIndex = 21;
+            this.listBoxPlayers.TabIndex = 17;
             this.listBoxPlayers.SelectedIndexChanged += new System.EventHandler(this.listBoxPlayers_SelectedIndexChanged);
             // 
             // listBoxGuilds
@@ -433,8 +433,8 @@
             this.listBoxGuilds.ItemHeight = 16;
             this.listBoxGuilds.Location = new System.Drawing.Point(840, 93);
             this.listBoxGuilds.Name = "listBoxGuilds";
-            this.listBoxGuilds.Size = new System.Drawing.Size(320, 516);
-            this.listBoxGuilds.TabIndex = 22;
+            this.listBoxGuilds.Size = new System.Drawing.Size(351, 516);
+            this.listBoxGuilds.TabIndex = 18;
             this.listBoxGuilds.SelectedIndexChanged += new System.EventHandler(this.listBoxGuilds_SelectedIndexChanged);
             // 
             // richTextOutput
@@ -442,7 +442,7 @@
             this.richTextOutput.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextOutput.Location = new System.Drawing.Point(12, 663);
             this.richTextOutput.Name = "richTextOutput";
-            this.richTextOutput.Size = new System.Drawing.Size(1148, 132);
+            this.richTextOutput.Size = new System.Drawing.Size(1179, 132);
             this.richTextOutput.TabIndex = 23;
             this.richTextOutput.Text = "";
             // 
@@ -453,14 +453,14 @@
             this.comboBoxServer.Location = new System.Drawing.Point(165, 87);
             this.comboBoxServer.Name = "comboBoxServer";
             this.comboBoxServer.Size = new System.Drawing.Size(173, 26);
-            this.comboBoxServer.TabIndex = 16;
+            this.comboBoxServer.TabIndex = 7;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1178, 814);
+            this.ClientSize = new System.Drawing.Size(1221, 814);
             this.Controls.Add(this.richTextOutput);
             this.Controls.Add(this.listBoxGuilds);
             this.Controls.Add(this.listBoxPlayers);

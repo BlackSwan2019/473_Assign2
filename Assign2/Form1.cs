@@ -105,7 +105,7 @@ namespace Assign2 {
 
             // Populate guild list.
             foreach(KeyValuePair<uint, Guild> entry in guildList) {
-                listBoxGuilds.Items.Add(String.Format("{0, -20}\t{1, -5}\n", entry.Value.Name, entry.Value.Server));  
+                listBoxGuilds.Items.Add(String.Format("{0, -20}\t[{1, -5}]\n", entry.Value.Name, entry.Value.Server));  
             }
 
             // Populate player list.
@@ -488,7 +488,7 @@ namespace Assign2 {
 
                 // Display the new player list by adding the updated Player dictionary. 
                 foreach (KeyValuePair<uint, Guild> entry in guildList) {
-                    listBoxGuilds.Items.Add(String.Format("{0, -20}\t{1, -5}\n", entry.Value.Name, entry.Value.Server));
+                    listBoxGuilds.Items.Add(String.Format("{0, -20}\t[{1, -5}]\n", entry.Value.Name, entry.Value.Server));
                 }
 
                 richTextOutput.Text = String.Format(String.Format("{0} guild has been added. \n", textBoxGName.Text));
@@ -552,7 +552,7 @@ namespace Assign2 {
 
                 // Display the new player list by adding the updated Player dictionary. 
                 foreach (KeyValuePair<uint, Guild> guild in guildList) {
-                    listBoxGuilds.Items.Add(String.Format("{0, -20}\t{1, -5}\n", guild.Value.Name, guild.Value.Server));
+                    listBoxGuilds.Items.Add(String.Format("{0, -20}\t[{1, -5}]\n", guild.Value.Name, guild.Value.Server));
                 }
             } else {
                 richTextOutput.Text = "You must choose a guild from the list before disbanding it.";
@@ -722,7 +722,7 @@ namespace Assign2 {
                 // Loop through the player list dictionary, looking for matches to the search.
                 foreach (KeyValuePair<uint, Guild> guild in guildList) {
                     if (guild.Value.Server.Equals(serverName)) {
-                        listBoxGuilds.Items.Add(String.Format("{0, -20}\t{1, -5}\n", guild.Value.Name, guild.Value.Server));
+                        listBoxGuilds.Items.Add(String.Format("{0, -20}\t[{1, -5}]\n", guild.Value.Name, guild.Value.Server));
                     }
                 }
             } 
