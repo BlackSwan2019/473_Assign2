@@ -168,23 +168,27 @@ namespace Assign2 {
          *              EventArgs   Event data from the publisher.
          */
         private void buttonPrintGRoster_Click(object sender, EventArgs e) {
-            // Clear the Output field.
-            richTextOutput.Clear();
+            if (listBoxGuilds.SelectedIndex != -1) {
+                // Clear the Output field.
+                richTextOutput.Clear();
 
-            // Get selected guild's ID number.
-            uint guildId = getSelectedGuildID();
+                // Get selected guild's ID number.
+                uint guildId = getSelectedGuildID();
 
-            string guildName = guildList[guildId].Name;
+                string guildName = guildList[guildId].Name;
 
-            // Print header for guild roster.
-            richTextOutput.Text = String.Format("Guild Listing for {0, -25} [{1}]\n", guildName, guildList[guildId].Server);
-            richTextOutput.Text += String.Format("---------------------------------------------------------------------------------\n");
+                // Print header for guild roster.
+                richTextOutput.Text = String.Format("Guild Listing for {0, -25} [{1}]\n", guildName, guildList[guildId].Server);
+                richTextOutput.Text += String.Format("---------------------------------------------------------------------------------\n");
 
-            // Now that we have the guildID, print all player associated with that guildID.
-            foreach(KeyValuePair<uint, Player> player in playerList) {
-                if (guildId == player.Value.GuildID) {
-                    richTextOutput.Text += String.Format( "Name: {0, -20} Race: {1, -15} Level: {2, -10} Guild: {3}\n", player.Value.Name, player.Value.Race, player.Value.Level, guildName);
+                // Now that we have the guildID, print all player associated with that guildID.
+                foreach (KeyValuePair<uint, Player> player in playerList) {
+                    if (guildId == player.Value.GuildID) {
+                        richTextOutput.Text += String.Format("Name: {0, -20} Race: {1, -15} Level: {2, -10} Guild: {3}\n", player.Value.Name, player.Value.Race, player.Value.Level, guildName);
+                    }
                 }
+            } else {
+                richTextOutput.Text = "You must choose a guild from the list before seeing who is in it.";
             }
         }
 
@@ -237,12 +241,28 @@ namespace Assign2 {
          *              EventArgs   Event data from the publisher.
          */
         private void buttonAddPlayer_Click(object sender, EventArgs e) {
+            bool sameNameError = false;
+            bool missingFieldError = false;
+
             // Reset output field to blank.
-            richTextOutput.Text = "";
+            richTextOutput.Clear();
 
             // Error message for when user doesn't put in values in the player creation fields. 
-            String playerFieldsError = "Couldn't add player. Missing: ";
-            StringBuilder errorMessage = new StringBuilder(playerFieldsError);
+            StringBuilder errorMessage = new StringBuilder("Could not create character: ");
+
+            // Check if guild name already exsits.
+            if (textBoxPName.Text != "") {
+                // Loop through list of guilds to see if name is taken already.
+                foreach (KeyValuePair<uint, Player> player in playerList) {
+                    // If duplicate name is found, flag it and add to error message.
+                    if (textBoxPName.Text.Equals(player.Value.Name)) {
+                        sameNameError = true;
+
+                        errorMessage = new StringBuilder(errorMessage + "\n\u2022 Player name already taken.");
+                        break;
+                    }
+                }
+            }
 
             // If player doesn't add information to a field(s), display a warning message in the Output with missing fields listed.
             if (textBoxPName.Text == "" || comboBoxRace.SelectedIndex == -1 || comboBoxClass.SelectedIndex == -1 || comboBoxRole.SelectedIndex == -1) {
@@ -262,8 +282,14 @@ namespace Assign2 {
                     errorMessage = new StringBuilder(errorMessage + "\n\u2022 Player Role ");
                 }
 
+                missingFieldError = true;
+            } 
+            
+            if (sameNameError || missingFieldError) {
                 richTextOutput.Text = errorMessage.ToString();
-            } else { // Add player to the system.
+            }
+
+            if (!sameNameError && !missingFieldError) { // Add player to the system.
                 //var classNum = Enum.IsDefined(typeof(CharClass), comboBoxClass.SelectedItem.ToString());
                 Race raceEnum = (Race)System.Enum.Parse(typeof(Race), comboBoxRace.SelectedItem.ToString());
 
@@ -300,6 +326,8 @@ namespace Assign2 {
 
                 // Increment player ID by one for the next new player.
                 playerId++;
+
+                // Play sound.
             }
         }
 
@@ -370,13 +398,29 @@ namespace Assign2 {
          *              EventArgs   Event data from the publisher.
          */
         private void buttonAddGuild_Click(object sender, EventArgs e) {
+            bool sameNameError = false;
+            bool missingFieldError = false;
+
             // Reset output field to blank.
             richTextOutput.Clear();
 
             // Error message for when user doesn't put in values in the player creation fields. 
-            String guildFieldsError = "Couldn't add guild. Missing Information: ";
-            StringBuilder errorMessage = new StringBuilder(guildFieldsError);
-            
+            StringBuilder errorMessage = new StringBuilder("Could not create guild: ");
+
+            // Check if guild name already exsits.
+            if (textBoxGName.Text != "") {
+                // Loop through list of guilds to see if name is taken already.
+                foreach (KeyValuePair<uint, Guild> guild in guildList) {
+                    // If duplicate name is found, flag it and add to error message.
+                    if (textBoxGName.Text.Equals(guild.Value.Name)) {
+                        sameNameError = true;
+
+                        errorMessage = new StringBuilder(errorMessage + "\n\u2022 Guild name already taken.");
+                        break;
+                    }
+                }
+            }
+
             // If player doesn't add information to a field(s), display a warning message in the Output with missing fields listed.
             if (textBoxGName.Text == "" || comboBoxGServer.SelectedIndex == -1 || comboBoxGType.SelectedIndex == -1) {
                 if (textBoxGName.Text == "") {
@@ -391,8 +435,15 @@ namespace Assign2 {
                     errorMessage = new StringBuilder(errorMessage + "\n\u2022 Guild Type ");
                 }
 
+                missingFieldError = true;
+            }
+
+            // If any form error detected, display error message in Output field.
+            if (sameNameError || missingFieldError) {
                 richTextOutput.Text = errorMessage.ToString();
-            } else { // Add the guild to the system.
+            }
+
+            if (!sameNameError && !missingFieldError) { // Add the guild to the system.
                 // Make a new Guild object with data from form fields.
                 Guild newGuild = new Guild(guildId, textBoxGName.Text, comboBoxGServer.SelectedItem.ToString(), 0);
 
@@ -428,46 +479,50 @@ namespace Assign2 {
          *              EventArgs   Event data from the publisher.
          */
         private void buttonDisbandGuild_Click(object sender, EventArgs e) {
-            uint playerCount = 0;
-            StringBuilder guildlessPlayers = new StringBuilder("");
+            if (listBoxGuilds.SelectedIndex != -1) {
+                uint playerCount = 0;
+                StringBuilder guildlessPlayers = new StringBuilder("");
 
-            // Reset Output field to blank.
-            richTextOutput.Clear();
+                // Reset Output field to blank.
+                richTextOutput.Clear();
 
-            // Get the selected guild's ID number.
-            uint guildId = getSelectedGuildID();
+                // Get the selected guild's ID number.
+                uint guildId = getSelectedGuildID();
 
-            // Grab it's name for later output.
-            string guildName = guildList[guildId].Name;
+                // Grab it's name for later output.
+                string guildName = guildList[guildId].Name;
 
-            // Remove guild from guild dictionary.
-            guildList.Remove(guildId);
+                // Remove guild from guild dictionary.
+                guildList.Remove(guildId);
 
-            // Display message in Output field that the guild was disbanded.
-            richTextOutput.Text = String.Format("{0} has been disbanded. ", guildName);
+                // Display message in Output field that the guild was disbanded.
+                richTextOutput.Text = String.Format("{0} has been disbanded. ", guildName);
 
-            // Loop through the player list dictionary and set the disbanded guild's players' guild IDs to 0, since they are no longer in a guild.
-            foreach (KeyValuePair<uint, Player> player in playerList) {
-                // If player's guild ID is the same as the guild ID of the guild that is being disbanded...
-                if (player.Value.GuildID == guildId) {
-                    // Set player's guild ID to 0.
-                    player.Value.GuildID = 0;
+                // Loop through the player list dictionary and set the disbanded guild's players' guild IDs to 0, since they are no longer in a guild.
+                foreach (KeyValuePair<uint, Player> player in playerList) {
+                    // If player's guild ID is the same as the guild ID of the guild that is being disbanded...
+                    if (player.Value.GuildID == guildId) {
+                        // Set player's guild ID to 0.
+                        player.Value.GuildID = 0;
 
-                    guildlessPlayers = new StringBuilder(guildlessPlayers + String.Format("\nName: {0, -15} Race: {1, -10} Level: {2, -10}", player.Value.Name, player.Value.Race, player.Value.Level));
+                        guildlessPlayers = new StringBuilder(guildlessPlayers + String.Format("\nName: {0, -15} Race: {1, -10} Level: {2, -10}", player.Value.Name, player.Value.Race, player.Value.Level));
 
-                    playerCount++;
+                        playerCount++;
+                    }
                 }
-            }
 
-            // Display message in Output field that the guild was disbanded.
-            richTextOutput.Text += String.Format("{0} players are now guildless!{1}", playerCount, guildlessPlayers);
+                // Display message in Output field that the guild was disbanded.
+                richTextOutput.Text += String.Format("{0} players are now guildless!{1}", playerCount, guildlessPlayers);
 
-            // Clear guild list to make way for new list.
-            listBoxGuilds.Items.Clear();
+                // Clear guild list to make way for new list.
+                listBoxGuilds.Items.Clear();
 
-            // Display the new player list by adding the updated Player dictionary. 
-            foreach (KeyValuePair<uint, Guild> guild in guildList) {
-                listBoxGuilds.Items.Add(String.Format("{0, -20}\t{1, -5}\n", guild.Value.Name, guild.Value.Server));
+                // Display the new player list by adding the updated Player dictionary. 
+                foreach (KeyValuePair<uint, Guild> guild in guildList) {
+                    listBoxGuilds.Items.Add(String.Format("{0, -20}\t{1, -5}\n", guild.Value.Name, guild.Value.Server));
+                }
+            } else {
+                richTextOutput.Text = "You must choose a guild from the list before disbanding it.";
             }
         }
 
@@ -482,7 +537,7 @@ namespace Assign2 {
             uint guildId = 0;   // Guild ID. Used to grab all players from a guild with that ID.
 
             // Get selected guild string from listBox.
-            string guildString = listBoxGuilds.SelectedItem.ToString();
+            string guildString = listBoxGuilds.SelectedItem.ToString();  //////////////////////////////// Error occurring here. Null Pointer when Leaving Guild.
 
             // Tokenize the selection.
             string[] guildInfo = guildString.Split('\t');
@@ -546,20 +601,24 @@ namespace Assign2 {
          *              EventArgs   Event data from the publisher.
          */
         private void buttonJoinGuild_Click(object sender, EventArgs e) {
-            // Reset Output field to blank.
-            richTextOutput.Clear();
+            if (listBoxPlayers.SelectedIndex != -1 && listBoxGuilds.SelectedIndex != -1) {
+                // Reset Output field to blank.
+                richTextOutput.Clear();
 
-            // Get selected player's ID number.
-            uint playerId = getSelectedPlayerID();
+                // Get selected player's ID number.
+                uint playerId = getSelectedPlayerID();
 
-            // Get selected guild's ID number.
-            uint guildId = getSelectedGuildID();
+                // Get selected guild's ID number.
+                uint guildId = getSelectedGuildID();
 
-            // Set plaayer's guild ID to the newly joined guild's ID.
-            playerList[playerId].JoinGuild(guildId);
+                // Set plaayer's guild ID to the newly joined guild's ID.
+                playerList[playerId].JoinGuild(guildId);
 
-            // Display message saying that the player has joined the guild.
-            richTextOutput.Text = String.Format("Player {0} has join guild {1}!", playerList[playerId].Name, guildList[guildId].Name);
+                // Display message saying that the player has joined the guild.
+                richTextOutput.Text = String.Format("Player {0} has join guild {1}!", playerList[playerId].Name, guildList[guildId].Name);
+            } else {
+                richTextOutput.Text = "Please choose a player and a guild from the two lists to the right. ";
+            }
         }
 
         /*  
@@ -571,23 +630,27 @@ namespace Assign2 {
          *              EventArgs   Event data from the publisher.
          */
         private void buttonLeaveGuild_Click(object sender, EventArgs e) {
-            // Reset Output field to blank.
-            richTextOutput.Clear();
+            if (listBoxPlayers.SelectedIndex != -1 && listBoxGuilds.SelectedIndex != -1) {
+                // Reset Output field to blank.
+                richTextOutput.Clear();
 
-            // Get selected player's ID number.
-            uint playerId = getSelectedPlayerID();
+                // Get selected player's ID number.
+                uint playerId = getSelectedPlayerID();
 
-            // Get the guild ID.
-            uint guildId = getSelectedGuildID();
+                // Get the player's guild ID number.
+                uint guildId = playerList[playerId].GuildID;
 
-            // Convert that guild ID to the name of the guild.
-            string guildName = guildList[guildId].Name;
+                // Using the above guild ID number, get the name of that guild.
+                string guildName = guildList[guildId].Name;
 
-            // Have player leave their guild.
-            playerList[playerId].LeaveGuild();
+                // Have player leave their guild.
+                playerList[playerId].LeaveGuild();
 
-            // Display message saying the character has left the guild.
-            richTextOutput.Text = String.Format("Player {0} has left guild {1}!", playerList[playerId].Name, guildName);
+                // Display message saying the character has left the guild.
+                richTextOutput.Text = String.Format("Player {0} has left guild {1}!", playerList[playerId].Name, guildName);
+            } else {
+                richTextOutput.Text = "Please choose a player and guild before ejecting them from their guild. ";
+            }
         }
 
         /*  
@@ -601,9 +664,8 @@ namespace Assign2 {
         private void buttonSearch_Click(object sender, EventArgs e) {
             // Reset listBoxe fields to empty.
             listBoxPlayers.Items.Clear();
-            listBoxGuilds.Items.Clear();
 
-            // Grab the character's name being serarched for.
+            // Grab the character's name being searched for.
             string playerName = textBoxSearchName.Text;
             string serverName = comboBoxServer.Text;
 
@@ -614,12 +676,17 @@ namespace Assign2 {
                 }
             }
 
-            // Loop through the player list dictionary, looking for matches to the search.
-            foreach (KeyValuePair<uint, Guild> guild in guildList) {
-                if (guild.Value.Server.Equals(serverName)) {
-                    listBoxGuilds.Items.Add(String.Format("{0, -20}\t{1, -5}\n", guild.Value.Name, guild.Value.Server));
+            // As long as a server is selected, then search for all the guilds in it.
+            if (comboBoxServer.SelectedIndex != -1) {
+                listBoxGuilds.Items.Clear();
+
+                // Loop through the player list dictionary, looking for matches to the search.
+                foreach (KeyValuePair<uint, Guild> guild in guildList) {
+                    if (guild.Value.Server.Equals(serverName)) {
+                        listBoxGuilds.Items.Add(String.Format("{0, -20}\t{1, -5}\n", guild.Value.Name, guild.Value.Server));
+                    }
                 }
-            }
+            } 
         }
     }
 }

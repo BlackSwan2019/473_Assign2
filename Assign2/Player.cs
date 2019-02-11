@@ -128,11 +128,9 @@ namespace Assign2 {
 
         public void LeaveGuild() {
             // Need to be in a guild to leave a guild
-            if (this.GuildID == 0) {
-                throw new Exception("You must be in a guild to leave a guild...");
+            if (this.GuildID != 0) {
+                this.GuildID = 0;
             }
-
-            this.GuildID = 0;
         }
 
         public override string ToString() {
