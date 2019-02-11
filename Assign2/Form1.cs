@@ -544,8 +544,13 @@ namespace Assign2 {
                     }
                 }
 
-                // Display message in Output field that the guild was disbanded.
-                richTextOutput.Text += String.Format("{0} players are now guildless!{1}", playerCount, guildlessPlayers);
+                if (playerCount == 1) {
+                    // Display message in Output field that the guild was disbanded.
+                    richTextOutput.Text += String.Format("{0} player is now guildless!{1}", playerCount, guildlessPlayers);
+                } else {
+                    // Display message in Output field that the guild was disbanded.
+                    richTextOutput.Text += String.Format("{0} players are now guildless!{1}", playerCount, guildlessPlayers);
+                }
 
                 // Clear guild list to make way for new list.
                 listBoxGuilds.Items.Clear();
