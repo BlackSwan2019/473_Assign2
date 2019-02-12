@@ -300,19 +300,19 @@ namespace Assign2 {
             // If player doesn't add information to a field(s), display a warning message in the Output with missing fields listed.
             if (textBoxPName.Text == "" || comboBoxRace.SelectedIndex == -1 || comboBoxClass.SelectedIndex == -1 || comboBoxRole.SelectedIndex == -1) {
                 if (textBoxPName.Text == "") {
-                    errorMessage = new StringBuilder(errorMessage + "\n\u2022 Player Name ");
+                    errorMessage = new StringBuilder(errorMessage + "\n\u2022 Missing player Name ");
                 }
 
                 if (comboBoxRace.SelectedIndex == -1) {
-                    errorMessage = new StringBuilder(errorMessage + "\n\u2022 Player Race ");
+                    errorMessage = new StringBuilder(errorMessage + "\n\u2022 Missing player Race ");
                 }
 
                 if (comboBoxClass.SelectedIndex == -1) {
-                    errorMessage = new StringBuilder(errorMessage + "\n\u2022 Player Class ");
+                    errorMessage = new StringBuilder(errorMessage + "\n\u2022 Missing player Class ");
                 }
                 
                 if (comboBoxRole.SelectedIndex == -1) {
-                    errorMessage = new StringBuilder(errorMessage + "\n\u2022 Player Role ");
+                    errorMessage = new StringBuilder(errorMessage + "\n\u2022 Missing player Role ");
                 }
 
                 missingFieldError = true;
@@ -457,15 +457,15 @@ namespace Assign2 {
             // If player doesn't add information to a field(s), display a warning message in the Output with missing fields listed.
             if (textBoxGName.Text == "" || comboBoxGServer.SelectedIndex == -1 || comboBoxGType.SelectedIndex == -1) {
                 if (textBoxGName.Text == "") {
-                    errorMessage = new StringBuilder(errorMessage + "\n\u2022 Guild Name ");
+                    errorMessage = new StringBuilder(errorMessage + "\n\u2022 Missing guild Name ");
                 }
 
                 if (comboBoxGServer.SelectedIndex == -1) {
-                    errorMessage = new StringBuilder(errorMessage + "\n\u2022 Guild Server ");
+                    errorMessage = new StringBuilder(errorMessage + "\n\u2022 Missing guild Server ");
                 }
 
                 if (comboBoxGType.SelectedIndex == -1) {
-                    errorMessage = new StringBuilder(errorMessage + "\n\u2022 Guild Type ");
+                    errorMessage = new StringBuilder(errorMessage + "\n\u2022 Missing guild Type ");
                 }
 
                 missingFieldError = true;
