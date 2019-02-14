@@ -40,8 +40,8 @@ namespace Assign2 {
     *              EventArgs   Event data from the publisher.
     */
     public partial class Form1 : Form {
-        uint playerId = 0;  // Player ID number.
-        uint guildId = 0;   // Guild ID number.
+        uint playerId = 1;  // Player ID number.
+        uint guildId = 1;   // Guild ID number.
 
         SoundPlayer music = new SoundPlayer(@"..\..\..\Resources\out.wav");
         bool musicStatus = true;
@@ -78,6 +78,7 @@ namespace Assign2 {
 
                     // Finally, add guild to guildList dictionary.
                     guildList.Add(guildId, guild);
+                    guildId++;
                 }
             }
 
@@ -100,6 +101,7 @@ namespace Assign2 {
                     );
 
                     playerList.Add(Convert.ToUInt32(itemTokens[0]), player);
+                    playerId++;
                 }
             }
 
@@ -341,6 +343,10 @@ namespace Assign2 {
                 // Get enum value of class.
                 int classNum = (int) classEnum;
 
+                while (playerList.ContainsKey(playerId)) {
+                    playerId++;
+                }
+
                 // Make a new player based on information grabbed from the four player fields in the form.
                 Player newPlayer = new Player(playerId, textBoxPName.Text, (Race) raceNum, (CharClass) classNum, 0, 0, 0);
                 
@@ -483,6 +489,11 @@ namespace Assign2 {
             }
 
             if (!sameNameError && !missingFieldError) { // Add the guild to the system.
+
+                while (guildList.ContainsKey(guildId)) {
+                    guildId++;
+                }
+
                 // Make a new Guild object with data from form fields.
                 Guild newGuild = new Guild(guildId, textBoxGName.Text, comboBoxGServer.SelectedItem.ToString(), 0);
 
@@ -542,7 +553,7 @@ namespace Assign2 {
                     // If player's guild ID is the same as the guild ID of the guild that is being disbanded...
                     if (player.Value.GuildID == guildId) {
                         // Set player's guild ID to 0.
-                        player.Value.GuildID = 0; // This should prevent players from being tossed into guilds
+                        player.Value.GuildID = 0; // This should prevent players from being tossed into random guilds
 
                         guildlessPlayers = new StringBuilder(guildlessPlayers + String.Format("\nName: {0, -15} Race: {1, -10} Level: {2, -10}", player.Value.Name, player.Value.Race, player.Value.Level));
 
@@ -721,15 +732,22 @@ namespace Assign2 {
          *              EventArgs   Event data from the publisher.
          */
         private void buttonSearch_Click(object sender, EventArgs e) {
-            // Reset listBoxe fields to empty.
-            listBoxPlayers.Items.Clear();
+
 
             // Grab the character's name being searched for.
             string playerName = textBoxSearchName.Text;
             string serverName = comboBoxServer.Text;
 
+            if (playerName == "" && serverName == "") {
+                richTextOutput.Text = "Please type something to search by (Player/Guild).";
+                return;
+            }
+
+            // Reset listBoxe fields to empty.
+            listBoxPlayers.Items.Clear();
+
             // Loop through the player list dictionary, looking for matches to the search.
-            foreach(KeyValuePair<uint, Player> player in playerList) {
+            foreach (KeyValuePair<uint, Player> player in playerList) {
                 if (player.Value.Name.StartsWith(playerName)) {
                     listBoxPlayers.Items.Add(String.Format("{0, -17}\t{1, -11} {2, -5}\n", player.Value.Name, player.Value.CharClass, player.Value.Level));
                 }
