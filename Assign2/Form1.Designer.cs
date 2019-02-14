@@ -467,6 +467,7 @@
             this.richTextOutput.Size = new System.Drawing.Size(1166, 132);
             this.richTextOutput.TabIndex = 23;
             this.richTextOutput.Text = "";
+            this.richTextOutput.ReadOnly = true;
             // 
             // Form1
             // 
