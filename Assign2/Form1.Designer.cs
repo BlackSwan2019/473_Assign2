@@ -68,10 +68,9 @@
             // buttonPrintGRoster
             // 
             this.buttonPrintGRoster.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonPrintGRoster.Location = new System.Drawing.Point(12, 37);
-            this.buttonPrintGRoster.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonPrintGRoster.Location = new System.Drawing.Point(6, 19);
             this.buttonPrintGRoster.Name = "buttonPrintGRoster";
-            this.buttonPrintGRoster.Size = new System.Drawing.Size(276, 50);
+            this.buttonPrintGRoster.Size = new System.Drawing.Size(138, 26);
             this.buttonPrintGRoster.TabIndex = 0;
             this.buttonPrintGRoster.Text = "Print Guild Roster";
             this.buttonPrintGRoster.UseVisualStyleBackColor = true;
@@ -91,11 +90,9 @@
             this.groupBox1.Controls.Add(this.buttonPrintGRoster);
             this.groupBox1.Font = new System.Drawing.Font("Lucida Calligraphy", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox1.Location = new System.Drawing.Point(24, 115);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox1.Location = new System.Drawing.Point(12, 60);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.groupBox1.Size = new System.Drawing.Size(886, 375);
+            this.groupBox1.Size = new System.Drawing.Size(443, 195);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Management  Functions";
@@ -103,10 +100,9 @@
             // button1
             // 
             this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Location = new System.Drawing.Point(690, 167);
-            this.button1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button1.Location = new System.Drawing.Point(345, 87);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(152, 50);
+            this.button1.Size = new System.Drawing.Size(76, 26);
             this.button1.TabIndex = 9;
             this.button1.Text = "Reset";
             this.button1.UseVisualStyleBackColor = true;
@@ -117,19 +113,17 @@
             this.comboBoxServer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxServer.FormattingEnabled = true;
-            this.comboBoxServer.Location = new System.Drawing.Point(330, 167);
-            this.comboBoxServer.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.comboBoxServer.Location = new System.Drawing.Point(165, 87);
             this.comboBoxServer.Name = "comboBoxServer";
-            this.comboBoxServer.Size = new System.Drawing.Size(342, 44);
+            this.comboBoxServer.Size = new System.Drawing.Size(173, 26);
             this.comboBoxServer.TabIndex = 7;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(324, 33);
-            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label3.Location = new System.Drawing.Point(162, 17);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(364, 34);
+            this.label3.Size = new System.Drawing.Size(182, 17);
             this.label3.TabIndex = 8;
             this.label3.Text = "Search Player (by Name)";
             this.label3.Click += new System.EventHandler(this.label3_Click);
@@ -137,29 +131,26 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(324, 129);
-            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label2.Location = new System.Drawing.Point(162, 67);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(351, 34);
+            this.label2.Size = new System.Drawing.Size(176, 17);
             this.label2.TabIndex = 7;
             this.label2.Text = "Search Guild (by Server)";
             // 
             // textBoxSearchName
             // 
             this.textBoxSearchName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxSearchName.Location = new System.Drawing.Point(330, 63);
-            this.textBoxSearchName.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBoxSearchName.Location = new System.Drawing.Point(165, 33);
             this.textBoxSearchName.Name = "textBoxSearchName";
-            this.textBoxSearchName.Size = new System.Drawing.Size(342, 44);
+            this.textBoxSearchName.Size = new System.Drawing.Size(173, 26);
             this.textBoxSearchName.TabIndex = 6;
             // 
             // buttonSearch
             // 
             this.buttonSearch.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonSearch.Location = new System.Drawing.Point(12, 283);
-            this.buttonSearch.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonSearch.Location = new System.Drawing.Point(6, 147);
             this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(276, 50);
+            this.buttonSearch.Size = new System.Drawing.Size(138, 26);
             this.buttonSearch.TabIndex = 4;
             this.buttonSearch.Text = "Apply Search Criteria";
             this.buttonSearch.UseVisualStyleBackColor = true;
@@ -168,10 +159,9 @@
             // buttonLeaveGuild
             // 
             this.buttonLeaveGuild.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonLeaveGuild.Location = new System.Drawing.Point(12, 221);
-            this.buttonLeaveGuild.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonLeaveGuild.Location = new System.Drawing.Point(6, 115);
             this.buttonLeaveGuild.Name = "buttonLeaveGuild";
-            this.buttonLeaveGuild.Size = new System.Drawing.Size(276, 50);
+            this.buttonLeaveGuild.Size = new System.Drawing.Size(138, 26);
             this.buttonLeaveGuild.TabIndex = 3;
             this.buttonLeaveGuild.Text = "Leave Guild";
             this.buttonLeaveGuild.UseVisualStyleBackColor = true;
@@ -180,10 +170,9 @@
             // buttonJoinGuild
             // 
             this.buttonJoinGuild.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonJoinGuild.Location = new System.Drawing.Point(12, 160);
-            this.buttonJoinGuild.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonJoinGuild.Location = new System.Drawing.Point(6, 83);
             this.buttonJoinGuild.Name = "buttonJoinGuild";
-            this.buttonJoinGuild.Size = new System.Drawing.Size(276, 50);
+            this.buttonJoinGuild.Size = new System.Drawing.Size(138, 26);
             this.buttonJoinGuild.TabIndex = 2;
             this.buttonJoinGuild.Text = "Join Guild";
             this.buttonJoinGuild.UseVisualStyleBackColor = true;
@@ -192,10 +181,9 @@
             // buttonDisbandGuild
             // 
             this.buttonDisbandGuild.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonDisbandGuild.Location = new System.Drawing.Point(12, 98);
-            this.buttonDisbandGuild.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonDisbandGuild.Location = new System.Drawing.Point(6, 51);
             this.buttonDisbandGuild.Name = "buttonDisbandGuild";
-            this.buttonDisbandGuild.Size = new System.Drawing.Size(276, 50);
+            this.buttonDisbandGuild.Size = new System.Drawing.Size(138, 26);
             this.buttonDisbandGuild.TabIndex = 1;
             this.buttonDisbandGuild.Text = "Disband Guild";
             this.buttonDisbandGuild.UseVisualStyleBackColor = true;
@@ -207,10 +195,9 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.label1.Font = new System.Drawing.Font("Britannic Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(810, 25);
-            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label1.Location = new System.Drawing.Point(405, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(826, 59);
+            this.label1.Size = new System.Drawing.Size(410, 30);
             this.label1.TabIndex = 6;
             this.label1.Text = "Player/Guild Management System";
             // 
@@ -227,11 +214,9 @@
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Font = new System.Drawing.Font("Lucida Calligraphy", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox2.Location = new System.Drawing.Point(24, 542);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox2.Location = new System.Drawing.Point(12, 282);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.groupBox2.Size = new System.Drawing.Size(886, 287);
+            this.groupBox2.Size = new System.Drawing.Size(443, 149);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Create New Player";
@@ -241,10 +226,9 @@
             this.comboBoxRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxRole.FormattingEnabled = true;
-            this.comboBoxRole.Location = new System.Drawing.Point(330, 167);
-            this.comboBoxRole.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.comboBoxRole.Location = new System.Drawing.Point(165, 87);
             this.comboBoxRole.Name = "comboBoxRole";
-            this.comboBoxRole.Size = new System.Drawing.Size(276, 44);
+            this.comboBoxRole.Size = new System.Drawing.Size(140, 26);
             this.comboBoxRole.TabIndex = 11;
             // 
             // comboBoxClass
@@ -252,10 +236,9 @@
             this.comboBoxClass.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxClass.FormattingEnabled = true;
-            this.comboBoxClass.Location = new System.Drawing.Point(18, 167);
-            this.comboBoxClass.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.comboBoxClass.Location = new System.Drawing.Point(9, 87);
             this.comboBoxClass.Name = "comboBoxClass";
-            this.comboBoxClass.Size = new System.Drawing.Size(276, 44);
+            this.comboBoxClass.Size = new System.Drawing.Size(140, 26);
             this.comboBoxClass.TabIndex = 10;
             this.comboBoxClass.SelectedIndexChanged += new System.EventHandler(this.comboBoxClass_SelectedIndexChanged);
             // 
@@ -264,19 +247,17 @@
             this.comboBoxRace.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxRace.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxRace.FormattingEnabled = true;
-            this.comboBoxRace.Location = new System.Drawing.Point(330, 71);
-            this.comboBoxRace.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.comboBoxRace.Location = new System.Drawing.Point(165, 37);
             this.comboBoxRace.Name = "comboBoxRace";
-            this.comboBoxRace.Size = new System.Drawing.Size(276, 44);
+            this.comboBoxRace.Size = new System.Drawing.Size(140, 26);
             this.comboBoxRace.TabIndex = 9;
             // 
             // buttonAddPlayer
             // 
             this.buttonAddPlayer.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonAddPlayer.Location = new System.Drawing.Point(648, 71);
-            this.buttonAddPlayer.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonAddPlayer.Location = new System.Drawing.Point(324, 37);
             this.buttonAddPlayer.Name = "buttonAddPlayer";
-            this.buttonAddPlayer.Size = new System.Drawing.Size(194, 50);
+            this.buttonAddPlayer.Size = new System.Drawing.Size(97, 26);
             this.buttonAddPlayer.TabIndex = 12;
             this.buttonAddPlayer.Text = "Add Player";
             this.buttonAddPlayer.UseVisualStyleBackColor = true;
@@ -285,20 +266,18 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 137);
-            this.label6.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label6.Location = new System.Drawing.Point(6, 71);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(83, 34);
+            this.label6.Size = new System.Drawing.Size(42, 17);
             this.label6.TabIndex = 12;
             this.label6.Text = "Class";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 37);
-            this.label7.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label7.Location = new System.Drawing.Point(6, 19);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(202, 34);
+            this.label7.Size = new System.Drawing.Size(100, 17);
             this.label7.TabIndex = 11;
             this.label7.Text = "Player Name";
             this.label7.Click += new System.EventHandler(this.label7_Click);
@@ -306,29 +285,26 @@
             // textBoxPName
             // 
             this.textBoxPName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPName.Location = new System.Drawing.Point(18, 73);
-            this.textBoxPName.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBoxPName.Location = new System.Drawing.Point(9, 38);
             this.textBoxPName.Name = "textBoxPName";
-            this.textBoxPName.Size = new System.Drawing.Size(266, 44);
+            this.textBoxPName.Size = new System.Drawing.Size(135, 26);
             this.textBoxPName.TabIndex = 8;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(324, 137);
-            this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label4.Location = new System.Drawing.Point(162, 71);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 34);
+            this.label4.Size = new System.Drawing.Size(38, 17);
             this.label4.TabIndex = 8;
             this.label4.Text = "Role";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(324, 37);
-            this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label5.Location = new System.Drawing.Point(162, 19);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 34);
+            this.label5.Size = new System.Drawing.Size(42, 17);
             this.label5.TabIndex = 7;
             this.label5.Text = "Race";
             this.label5.Click += new System.EventHandler(this.label5_Click);
@@ -344,11 +320,9 @@
             this.groupBox3.Controls.Add(this.buttonAddGuild);
             this.groupBox3.Font = new System.Drawing.Font("Lucida Calligraphy", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox3.Location = new System.Drawing.Point(24, 885);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox3.Location = new System.Drawing.Point(12, 460);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.groupBox3.Size = new System.Drawing.Size(886, 287);
+            this.groupBox3.Size = new System.Drawing.Size(443, 149);
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Create New Guild";
@@ -358,10 +332,9 @@
             this.comboBoxGType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxGType.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxGType.FormattingEnabled = true;
-            this.comboBoxGType.Location = new System.Drawing.Point(330, 169);
-            this.comboBoxGType.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.comboBoxGType.Location = new System.Drawing.Point(165, 88);
             this.comboBoxGType.Name = "comboBoxGType";
-            this.comboBoxGType.Size = new System.Drawing.Size(276, 44);
+            this.comboBoxGType.Size = new System.Drawing.Size(140, 26);
             this.comboBoxGType.TabIndex = 15;
             // 
             // comboBoxGServer
@@ -369,58 +342,52 @@
             this.comboBoxGServer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxGServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxGServer.FormattingEnabled = true;
-            this.comboBoxGServer.Location = new System.Drawing.Point(330, 73);
-            this.comboBoxGServer.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.comboBoxGServer.Location = new System.Drawing.Point(165, 38);
             this.comboBoxGServer.Name = "comboBoxGServer";
-            this.comboBoxGServer.Size = new System.Drawing.Size(276, 44);
+            this.comboBoxGServer.Size = new System.Drawing.Size(140, 26);
             this.comboBoxGServer.TabIndex = 14;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 37);
-            this.label9.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label9.Location = new System.Drawing.Point(6, 19);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(183, 34);
+            this.label9.Size = new System.Drawing.Size(91, 17);
             this.label9.TabIndex = 11;
             this.label9.Text = "Guild Name";
             // 
             // textBoxGName
             // 
             this.textBoxGName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxGName.Location = new System.Drawing.Point(18, 73);
-            this.textBoxGName.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.textBoxGName.Location = new System.Drawing.Point(9, 38);
             this.textBoxGName.Name = "textBoxGName";
-            this.textBoxGName.Size = new System.Drawing.Size(266, 44);
+            this.textBoxGName.Size = new System.Drawing.Size(135, 26);
             this.textBoxGName.TabIndex = 13;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(324, 137);
-            this.label10.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label10.Location = new System.Drawing.Point(162, 71);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(83, 34);
+            this.label10.Size = new System.Drawing.Size(42, 17);
             this.label10.TabIndex = 8;
             this.label10.Text = "Type";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(324, 37);
-            this.label11.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label11.Location = new System.Drawing.Point(162, 19);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(106, 34);
+            this.label11.Size = new System.Drawing.Size(53, 17);
             this.label11.TabIndex = 7;
             this.label11.Text = "Server";
             // 
             // buttonAddGuild
             // 
             this.buttonAddGuild.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonAddGuild.Location = new System.Drawing.Point(648, 73);
-            this.buttonAddGuild.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonAddGuild.Location = new System.Drawing.Point(324, 38);
             this.buttonAddGuild.Name = "buttonAddGuild";
-            this.buttonAddGuild.Size = new System.Drawing.Size(194, 50);
+            this.buttonAddGuild.Size = new System.Drawing.Size(97, 26);
             this.buttonAddGuild.TabIndex = 16;
             this.buttonAddGuild.Text = "Add Guild";
             this.buttonAddGuild.UseVisualStyleBackColor = true;
@@ -432,10 +399,9 @@
             this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.label8.Font = new System.Drawing.Font("Britannic Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label8.Location = new System.Drawing.Point(970, 125);
-            this.label8.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label8.Location = new System.Drawing.Point(485, 65);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(201, 59);
+            this.label8.Size = new System.Drawing.Size(100, 30);
             this.label8.TabIndex = 14;
             this.label8.Text = "Players";
             // 
@@ -445,10 +411,9 @@
             this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.label12.Font = new System.Drawing.Font("Britannic Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label12.Location = new System.Drawing.Point(1670, 125);
-            this.label12.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label12.Location = new System.Drawing.Point(835, 65);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(175, 59);
+            this.label12.Size = new System.Drawing.Size(88, 30);
             this.label12.TabIndex = 16;
             this.label12.Text = "Guilds";
             // 
@@ -458,10 +423,9 @@
             this.label13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.label13.Font = new System.Drawing.Font("Britannic Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label13.Location = new System.Drawing.Point(14, 1219);
-            this.label13.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label13.Location = new System.Drawing.Point(7, 634);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(185, 59);
+            this.label13.Size = new System.Drawing.Size(94, 30);
             this.label13.TabIndex = 18;
             this.label13.Text = "Output";
             this.label13.Click += new System.EventHandler(this.label13_Click);
@@ -469,10 +433,9 @@
             // buttonMusic
             // 
             this.buttonMusic.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonMusic.Location = new System.Drawing.Point(2162, 33);
-            this.buttonMusic.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonMusic.Location = new System.Drawing.Point(1081, 17);
             this.buttonMusic.Name = "buttonMusic";
-            this.buttonMusic.Size = new System.Drawing.Size(194, 50);
+            this.buttonMusic.Size = new System.Drawing.Size(97, 26);
             this.buttonMusic.TabIndex = 9;
             this.buttonMusic.Text = "Stop Music";
             this.buttonMusic.UseVisualStyleBackColor = true;
@@ -483,11 +446,10 @@
             this.listBoxPlayers.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.listBoxPlayers.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxPlayers.FormattingEnabled = true;
-            this.listBoxPlayers.ItemHeight = 29;
-            this.listBoxPlayers.Location = new System.Drawing.Point(980, 179);
-            this.listBoxPlayers.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.listBoxPlayers.ItemHeight = 16;
+            this.listBoxPlayers.Location = new System.Drawing.Point(490, 93);
             this.listBoxPlayers.Name = "listBoxPlayers";
-            this.listBoxPlayers.Size = new System.Drawing.Size(636, 961);
+            this.listBoxPlayers.Size = new System.Drawing.Size(320, 500);
             this.listBoxPlayers.TabIndex = 17;
             this.listBoxPlayers.SelectedIndexChanged += new System.EventHandler(this.listBoxPlayers_SelectedIndexChanged);
             // 
@@ -496,31 +458,29 @@
             this.listBoxGuilds.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.listBoxGuilds.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxGuilds.FormattingEnabled = true;
-            this.listBoxGuilds.ItemHeight = 29;
-            this.listBoxGuilds.Location = new System.Drawing.Point(1680, 179);
-            this.listBoxGuilds.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.listBoxGuilds.ItemHeight = 16;
+            this.listBoxGuilds.Location = new System.Drawing.Point(840, 93);
             this.listBoxGuilds.Name = "listBoxGuilds";
-            this.listBoxGuilds.Size = new System.Drawing.Size(672, 961);
+            this.listBoxGuilds.Size = new System.Drawing.Size(338, 500);
             this.listBoxGuilds.TabIndex = 18;
             this.listBoxGuilds.SelectedIndexChanged += new System.EventHandler(this.listBoxGuilds_SelectedIndexChanged);
             // 
             // richTextOutput
             // 
             this.richTextOutput.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextOutput.Location = new System.Drawing.Point(24, 1275);
-            this.richTextOutput.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.richTextOutput.Location = new System.Drawing.Point(12, 663);
             this.richTextOutput.Name = "richTextOutput";
             this.richTextOutput.ReadOnly = true;
-            this.richTextOutput.Size = new System.Drawing.Size(2328, 250);
+            this.richTextOutput.Size = new System.Drawing.Size(1166, 132);
             this.richTextOutput.TabIndex = 23;
             this.richTextOutput.Text = "";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(2402, 1565);
+            this.ClientSize = new System.Drawing.Size(1193, 812);
             this.Controls.Add(this.richTextOutput);
             this.Controls.Add(this.listBoxGuilds);
             this.Controls.Add(this.listBoxPlayers);
@@ -532,7 +492,6 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
