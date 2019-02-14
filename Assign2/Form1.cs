@@ -32,16 +32,16 @@ namespace Assign2 {
     }
 
     /*  
-         *  Class:     Form1
-         *  
-         *  Purpose:    The Player/Guild manager of the game, World of ConflictCraft.
-         * 
-         *  Arguments:  object      The publisher of the event.
-         *              EventArgs   Event data from the publisher.
-         */
+    *  Class:     Form1
+    *  
+    *  Purpose:    The Player/Guild manager of the game, World of ConflictCraft.
+    * 
+    *  Arguments:  object      The publisher of the event.
+    *              EventArgs   Event data from the publisher.
+    */
     public partial class Form1 : Form {
-        uint playerId = 0;  // Player ID number.
-        uint guildId = 0;   // Guild ID number.
+        uint playerId = 1;  // Player ID number.
+        uint guildId = 1;   // Guild ID number.
 
         SoundPlayer music = new SoundPlayer(@"..\..\..\Resources\out.wav");
         bool musicStatus = true;
@@ -78,6 +78,7 @@ namespace Assign2 {
 
                     // Finally, add guild to guildList dictionary.
                     guildList.Add(guildId, guild);
+                    guildId++;
                 }
             }
 
@@ -100,6 +101,7 @@ namespace Assign2 {
                     );
 
                     playerList.Add(Convert.ToUInt32(itemTokens[0]), player);
+                    playerId++;
                 }
             }
 
@@ -240,6 +242,9 @@ namespace Assign2 {
         private void listBoxPlayers_SelectedIndexChanged(object sender, EventArgs e) {
             // Get player ID.
             uint playerId = getSelectedPlayerID();
+            if (playerId == 0) {
+                return; // Player not found
+            }
             // Create player object.
             Player player = playerList[playerId];
 
@@ -258,6 +263,9 @@ namespace Assign2 {
         private void listBoxGuilds_SelectedIndexChanged(object sender, EventArgs e) {
             // Get player ID.
             uint guildId = getSelectedGuildID();
+            if (guildId == 0) {
+                return; // Guild not found
+            }
             // Create player object.
             Guild guild = guildList[guildId];
 
@@ -334,6 +342,10 @@ namespace Assign2 {
                 
                 // Get enum value of class.
                 int classNum = (int) classEnum;
+
+                while (playerList.ContainsKey(playerId)) {
+                    playerId++;
+                }
 
                 // Make a new player based on information grabbed from the four player fields in the form.
                 Player newPlayer = new Player(playerId, textBoxPName.Text, (Race) raceNum, (CharClass) classNum, 0, 0, 0);
@@ -477,16 +489,21 @@ namespace Assign2 {
             }
 
             if (!sameNameError && !missingFieldError) { // Add the guild to the system.
+
+                while (guildList.ContainsKey(guildId)) {
+                    guildId++;
+                }
+
                 // Make a new Guild object with data from form fields.
                 Guild newGuild = new Guild(guildId, textBoxGName.Text, comboBoxGServer.SelectedItem.ToString(), 0);
 
-                // Add the new player to the players dictionary (Key: playerId  Value: newPlayer).
+                // Add the new player to the players dictionary (Key: guildId  Value: newGuild).
                 guildList.Add(guildId, newGuild);
 
                 // Clear player list in the form to make way for the updated list.
                 listBoxGuilds.Items.Clear();
 
-                // Display the new player list by adding the updated Player dictionary. 
+                // Display the new player list by adding the updated Guild dictionary. 
                 foreach (KeyValuePair<uint, Guild> entry in guildList) {
                     listBoxGuilds.Items.Add(String.Format("{0, -20}\t[{1, -5}]\n", entry.Value.Name, entry.Value.Server));
                 }
@@ -498,7 +515,7 @@ namespace Assign2 {
                 comboBoxGServer.SelectedIndex = -1;
                 comboBoxGType.SelectedIndex = -1;
 
-                // Increment player ID by one for the next new player.
+                // Increment guild ID by one for the next new guild.
                 guildId++;
             }
         }
@@ -536,7 +553,7 @@ namespace Assign2 {
                     // If player's guild ID is the same as the guild ID of the guild that is being disbanded...
                     if (player.Value.GuildID == guildId) {
                         // Set player's guild ID to 0.
-                        player.Value.GuildID = 0;
+                        player.Value.GuildID = 0; // This should prevent players from being tossed into random guilds
 
                         guildlessPlayers = new StringBuilder(guildlessPlayers + String.Format("\nName: {0, -15} Race: {1, -10} Level: {2, -10}", player.Value.Name, player.Value.Race, player.Value.Level));
 
@@ -574,6 +591,10 @@ namespace Assign2 {
         private uint getSelectedGuildID() {
             uint guildId = 0;   // Guild ID. Used to grab all players from a guild with that ID.
 
+            if (listBoxGuilds.SelectedItem == null) {
+                return 0; // Removes the error when no guild is selected.
+            }
+
             // Get selected guild string from listBox.
             string guildString = listBoxGuilds.SelectedItem.ToString();  //////////////////////////////// Error occurring here. Null Pointer when Leaving Guild.
 
@@ -606,6 +627,10 @@ namespace Assign2 {
          */
         private uint getSelectedPlayerID() {
             uint playerId = 0;   // Player ID. Used to grab all players from a guild with that ID.
+
+            if (listBoxPlayers.SelectedItem == null) {
+                return 0; // Removes the error when no player is selected.
+            }
 
             // Get selected player string from listBox.
             string playerString = listBoxPlayers.SelectedItem.ToString();
@@ -707,15 +732,22 @@ namespace Assign2 {
          *              EventArgs   Event data from the publisher.
          */
         private void buttonSearch_Click(object sender, EventArgs e) {
-            // Reset listBoxe fields to empty.
-            listBoxPlayers.Items.Clear();
+
 
             // Grab the character's name being searched for.
             string playerName = textBoxSearchName.Text;
             string serverName = comboBoxServer.Text;
 
+            if (playerName == "" && serverName == "") {
+                richTextOutput.Text = "Please type something to search by (Player/Guild).";
+                return;
+            }
+
+            // Reset listBoxe fields to empty.
+            listBoxPlayers.Items.Clear();
+
             // Loop through the player list dictionary, looking for matches to the search.
-            foreach(KeyValuePair<uint, Player> player in playerList) {
+            foreach (KeyValuePair<uint, Player> player in playerList) {
                 if (player.Value.Name.StartsWith(playerName)) {
                     listBoxPlayers.Items.Add(String.Format("{0, -17}\t{1, -11} {2, -5}\n", player.Value.Name, player.Value.CharClass, player.Value.Level));
                 }
@@ -742,6 +774,7 @@ namespace Assign2 {
 
         private void resetServerSearch_Click(object sender, EventArgs e) {
             comboBoxServer.SelectedIndex = -1;
+            textBoxSearchName.Text = "";
         }
     }
 }
